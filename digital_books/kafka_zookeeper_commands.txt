@@ -1,0 +1,24 @@
+server.properties= logs.dirs= D:/hnt_case_study_swapnil/kafka/data-logs/kafka-logs
+zookeeper.properties= dataDir= D:/hnt_case_study_swapnil/kafka/data-logs/zookeeper-logs
+
+cmd from inside Kafka/bin/windows :
+
+>Start zookeeper server :
+
+zookeeper-server-start.bat ../../config/zookeeper.properties
+
+>Start kafka server :
+
+kafka-server-start.bat ../../config/server.properties
+
+>Create Topic :
+
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic notification
+
+>List all created topics :
+
+kafka-topics.bat --list --zookeeper localhost:2181
+
+>Stop Kafka using kafka-server-stop.bat
+
+>Stop Zookeeper using zookeeper-server-stop.bat 

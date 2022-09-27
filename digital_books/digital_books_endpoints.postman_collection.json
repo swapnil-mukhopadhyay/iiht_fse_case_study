@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "755ef728-7a78-43e1-a8ed-5ac1ff23d3ac",
+		"name": "digital_books_endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Book : Search Book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/api/v1/digitalbooks/books/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"digitalbooks",
+						"books",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reader : Buy Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookId\": 1,\r\n    \"readerDto\": {\r\n        \"readerId\" : 1,\r\n        \"name\":\"Tom\",\r\n        \"emailId\":\"tom@gmail.com\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/v1/digitalbooks/readers/books/buy",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"digitalbooks",
+						"readers",
+						"books",
+						"buy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reader : Get Subscriptions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/api/v1/digitalbooks/readers/tom@gmail.com/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"digitalbooks",
+						"readers",
+						"tom@gmail.com",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reader : Read Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/v1/digitalbooks/readers/tom@gmail.com/books/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"digitalbooks",
+						"readers",
+						"tom@gmail.com",
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reader : Refund Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookId\": 1,\r\n    \"readerDto\": {\r\n        \"name\":\"Tom\",\r\n        \"emailId\":\"tom@gmail.com\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/v1/digitalbooks/readers/tom@gmail.com/books/1/refund",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"digitalbooks",
+						"readers",
+						"tom@gmail.com",
+						"books",
+						"1",
+						"refund"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reader : Get Notifications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/api/v1/digitalbooks/readers/tom@gmail.com/notification",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"digitalbooks",
+						"readers",
+						"tom@gmail.com",
+						"notification"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Author : Create Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookDtoList\": [\r\n        {\r\n            \"logo\": \"Tigers_Logo\",\r\n            \"title\": \"Tigers\",\r\n            \"category\": \"Education\",\r\n            \"price\": 150.0,\r\n            \"authorId\": 2,\r\n            \"author\": \"George\",\r\n            \"publisher\": \"Penguin\",\r\n            \"active\": true,\r\n            \"content\": \"waiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnsswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnsswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnss\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/v1/digitalbooks/books/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"digitalbooks",
+						"books",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Author : Edit Book",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookDtoList\": [\r\n        {\r\n            \"bookId\": 1,\r\n            \"logo\": \"Tigers_Logo\",\r\n            \"title\": \"Tigers\",\r\n            \"category\": \"Education\",\r\n            \"price\": 150.0,\r\n            \"authorId\": 2,\r\n            \"author\": \"George\",\r\n            \"publisher\": \"Penguin\",\r\n            \"publishedDate\": null,\r\n            \"active\": false,\r\n            \"content\": \"waiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnsswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnsswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnss\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/v1/digitalbooks/books/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"digitalbooks",
+						"books",
+						"edit"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
