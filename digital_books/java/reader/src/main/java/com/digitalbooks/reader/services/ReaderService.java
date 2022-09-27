@@ -47,6 +47,8 @@ import com.digitalbooks.reader.repositories.TblReaderInfoRepository;
 import com.digitalbooks.reader.repositories.TblReaderNotificationRepository;
 import com.digitalbooks.reader.repositories.TblReaderPaymentRepository;
 
+import feign.FeignException;
+
 @Service
 @Transactional
 public class ReaderService implements ReaderIf {
@@ -89,8 +91,8 @@ public class ReaderService implements ReaderIf {
 			BookPayload bookPayload = new BookPayload();
 			try {
 				bookPayload = bookClient.buyBook(bookPurchasePayload);
-			} catch (DigitalBooksException digitalBooksException) {
-				rethrowDigitalBooksException(digitalBooksException);
+			} catch (FeignException feignException) {
+				throw new DigitalBooksException(STATUS_CODE_SOMETHING_WENT_WRONG, feignException.getMessage());
 			}
 			if (IS_VALID_BOOK_PAYLOAD_WITH_ONE_BOOK_WITHOUT_CONTENT.test(bookPayload)) {
 				setPaymentInvoice(bookPurchasePayload, paymentInvoicePayload, tblReaderInfo, bookPayload);
@@ -182,8 +184,8 @@ public class ReaderService implements ReaderIf {
 			try {
 				readerPayload
 						.setBookDtoList(bookClient.getSubscribedBooks(tblReaderInfo.getReaderId()).getBookDtoList());
-			} catch (DigitalBooksException digitalBooksException) {
-				rethrowDigitalBooksException(digitalBooksException);
+			} catch (FeignException feignException) {
+				throw new DigitalBooksException(STATUS_CODE_SOMETHING_WENT_WRONG, feignException.getMessage());
 			}
 			ReaderDto readerDto = new ReaderDto();
 			readerDto.setReaderId(tblReaderInfo.getReaderId());
@@ -212,8 +214,8 @@ public class ReaderService implements ReaderIf {
 				BookPayload bookPayload = new BookPayload();
 				try {
 					bookPayload = bookClient.readBook(bookPurchasePayload);
-				} catch (DigitalBooksException digitalBooksException) {
-					rethrowDigitalBooksException(digitalBooksException);
+				} catch (FeignException feignException) {
+					throw new DigitalBooksException(STATUS_CODE_SOMETHING_WENT_WRONG, feignException.getMessage());
 				}
 				if (IS_VALID_BOOK_PAYLOAD_WITH_ONE_BOOK_WITH_CONTENT.test(bookPayload)) {
 					readerPayload.setBookDtoList(bookPayload.getBookDtoList());
@@ -238,8 +240,8 @@ public class ReaderService implements ReaderIf {
 			BookPayload bookPayload = new BookPayload();
 			try {
 				bookPayload = bookClient.getSubscribedBooks(tblReaderInfo.getReaderId());
-			} catch (DigitalBooksException digitalBooksException) {
-				rethrowDigitalBooksException(digitalBooksException);
+			} catch (FeignException feignException) {
+				throw new DigitalBooksException(STATUS_CODE_SOMETHING_WENT_WRONG, feignException.getMessage());
 			}
 			if (IS_VALID_BOOK_PAYLOAD_WITH_ONE_BOOK_WITHOUT_CONTENT.test(bookPayload)) {
 				readerPayload.setBookDtoList(bookPayload.getBookDtoList());
@@ -293,8 +295,8 @@ public class ReaderService implements ReaderIf {
 			BookPayload bookPayload = new BookPayload();
 			try {
 				bookPayload = bookClient.unsubscribeBook(bookPurchasePayload);
-			} catch (DigitalBooksException digitalBooksException) {
-				rethrowDigitalBooksException(digitalBooksException);
+			} catch (FeignException feignException) {
+				throw new DigitalBooksException(STATUS_CODE_SOMETHING_WENT_WRONG, feignException.getMessage());
 			}
 
 			if (IS_VALID_BOOK_PAYLOAD_WITH_ONE_BOOK_WITHOUT_CONTENT.test(bookPayload)) {

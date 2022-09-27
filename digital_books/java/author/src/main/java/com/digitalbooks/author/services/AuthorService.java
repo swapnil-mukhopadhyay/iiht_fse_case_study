@@ -6,6 +6,7 @@ import static com.digitalbooks.author.constants.DigitalBooksExceptionConstants.I
 import static com.digitalbooks.author.constants.DigitalBooksExceptionConstants.STATUS_CODE_BOOK_BLOCKED_OR_DOESNT_EXIST;
 import static com.digitalbooks.author.constants.DigitalBooksExceptionConstants.STATUS_CODE_INVALID_AUTHOR_ID;
 import static com.digitalbooks.author.constants.DigitalBooksExceptionConstants.STATUS_CODE_INVALID_PAYLOAD;
+import static com.digitalbooks.author.constants.DigitalBooksExceptionConstants.STATUS_CODE_SOMETHING_WENT_WRONG;
 import static com.digitalbooks.author.predicates.AuthorPredicates.IS_VALID_AUTHOR_PAYLOAD;
 
 import java.util.Optional;
@@ -29,6 +30,8 @@ import com.digitalbooks.author.repositories.TblAuthorCredentialRepository;
 import com.digitalbooks.author.repositories.TblAuthorInfoRepository;
 import com.digitalbooks.author.security.config.PasswordEncoderConfig;
 import com.digitalbooks.author.security.payload.CredentialPayload;
+
+import feign.FeignException;
 
 @Service
 @Transactional
@@ -100,8 +103,8 @@ public class AuthorService implements AuthorIf {
 		bookPayload.setBookDtoList(authorPayload.getBookDtoList());
 		try {
 			bookPayload = bookClient.createBook(bookPayload);
-		} catch (DigitalBooksException digitalBooksException) {
-			rethrowDigitalBooksException(digitalBooksException);
+		} catch (FeignException feignException) {
+			throw new DigitalBooksException(STATUS_CODE_SOMETHING_WENT_WRONG, feignException.getMessage());
 		}
 		if (null != bookPayload.getBookDtoList().get(0).getBookId()) {
 			TblAuthorBook tblAuthorBook = new TblAuthorBook();
@@ -150,8 +153,8 @@ public class AuthorService implements AuthorIf {
 				bookPayload.setBookDtoList(authorPayload.getBookDtoList());
 				try {
 					bookClient.editBook(bookPayload);
-				} catch (DigitalBooksException digitalBooksException) {
-					rethrowDigitalBooksException(digitalBooksException);
+				} catch (FeignException feignException) {
+					throw new DigitalBooksException(STATUS_CODE_SOMETHING_WENT_WRONG, feignException.getMessage());
 				}
 			} else {
 				throw new DigitalBooksException(STATUS_CODE_INVALID_AUTHOR_ID, INVALID_AUTHOR_ID);
