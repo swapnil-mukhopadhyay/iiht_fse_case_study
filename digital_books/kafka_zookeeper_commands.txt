@@ -1,5 +1,5 @@
-server.properties= logs.dirs= D:/hnt_case_study_swapnil/kafka/data-logs/kafka-logs
-zookeeper.properties= dataDir= D:/hnt_case_study_swapnil/kafka/data-logs/zookeeper-logs
+server.properties= logs.dirs= D:/kafka/data-logs/kafka-logs
+zookeeper.properties= dataDir= D:/kafka/data-logs/zookeeper-logs
 
 cmd from inside Kafka/bin/windows :
 
@@ -19,6 +19,10 @@ kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --pa
 
 kafka-topics.bat --list --zookeeper localhost:2181
 
->Stop Kafka using kafka-server-stop.bat
+>Stop Kafka Server :
 
->Stop Zookeeper using zookeeper-server-stop.bat 
+kafka-server-stop.bat
+
+>Stop Zookeeper Server :
+
+zookeeper-server-stop.bat 

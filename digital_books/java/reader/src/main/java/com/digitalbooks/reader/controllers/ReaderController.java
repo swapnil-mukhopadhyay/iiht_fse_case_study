@@ -37,8 +37,9 @@ public class ReaderController {
 	}
 	
 	@PostMapping("{emailId}/books/find")
-	public ReaderPayload findBookByPaymentId(@RequestBody Long paymentId) throws DigitalBooksException {
-		return readerIf.findBookByPaymentId(paymentId);
+	public ReaderPayload findBookByPaymentId(@PathVariable String emailId, @RequestBody Long paymentId)
+			throws DigitalBooksException {
+		return readerIf.findBookByPaymentId(emailId,paymentId);
 	}
 	
 	@PostMapping("{emailId}/books/{bookId}/refund")

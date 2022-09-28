@@ -14,7 +14,7 @@ public interface ReaderIf {
 	
 	public ReaderPayload readBook(String emailId, Long bookId) throws DigitalBooksException;
 	
-	public ReaderPayload findBookByPaymentId(Long paymentId) throws DigitalBooksException;
+	public ReaderPayload findBookByPaymentId(String emailId, Long paymentId) throws DigitalBooksException;
 	
 	public ReaderPayload refundBook(BookPurchasePayload bookPurchasePayload) throws DigitalBooksException;
 	

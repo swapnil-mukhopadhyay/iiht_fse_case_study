@@ -36,7 +36,7 @@ class ReaderApplicationTests {
 	private BookClient bookClient;
 
 	@Test
-	public void testGetSubscribedBooks() throws DigitalBooksException {
+	void testGetSubscribedBooks() throws DigitalBooksException {
 		TblReaderInfo tblReaderInfo = getDummyTblReaderInfo();
 		BookPayload bookPayload = getDummyBookPayload();
 		when(tblReaderInfoRepository.findByEmailId(anyString())).thenReturn(Optional.ofNullable(tblReaderInfo));

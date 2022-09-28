@@ -83,7 +83,7 @@ public class AuthorService implements AuthorIf {
 					.findById(authorPayload.getAuthorId());
 			if (tblAuthorInfoOptional.isPresent()) {
 				try {
-					createNewBook(authorPayload, tblAuthorInfoOptional);
+					createNewBook(authorPayload, tblAuthorInfoOptional.get());
 				} catch (DigitalBooksException digitalBooksException) {
 					rethrowDigitalBooksException(digitalBooksException);
 				}
@@ -96,9 +96,7 @@ public class AuthorService implements AuthorIf {
 		return authorPayload;
 	}
 
-	private void createNewBook(AuthorPayload authorPayload, Optional<TblAuthorInfo> tblAuthorInfoOptional)
-			throws DigitalBooksException {
-		TblAuthorInfo tblAuthorInfo = tblAuthorInfoOptional.get();
+	private void createNewBook(AuthorPayload authorPayload, TblAuthorInfo tblAuthorInfo) throws DigitalBooksException {
 		BookPayload bookPayload = new BookPayload();
 		bookPayload.setBookDtoList(authorPayload.getBookDtoList());
 		try {

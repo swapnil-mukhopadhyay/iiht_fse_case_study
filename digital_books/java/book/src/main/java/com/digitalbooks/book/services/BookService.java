@@ -35,7 +35,6 @@ import com.digitalbooks.book.entities.payload.BookPayload;
 import com.digitalbooks.book.entities.payload.BookPurchasePayload;
 import com.digitalbooks.book.exceptions.DigitalBooksException;
 import com.digitalbooks.book.interfaces.BookIf;
-import com.digitalbooks.book.predicates.BookPredicates;
 import com.digitalbooks.book.repositories.TblBookInfoRepository;
 import com.digitalbooks.book.repositories.TblBookSubRepository;
 import com.digitalbooks.common.models.NotificationPayload;

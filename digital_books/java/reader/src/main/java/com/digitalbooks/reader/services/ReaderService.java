@@ -13,6 +13,7 @@ import static com.digitalbooks.reader.constants.DigitalBooksExceptionConstants.S
 import static com.digitalbooks.reader.constants.DigitalBooksExceptionConstants.STATUS_CODE_NOT_SUBSCRIBED;
 import static com.digitalbooks.reader.constants.DigitalBooksExceptionConstants.STATUS_CODE_SOMETHING_WENT_WRONG;
 import static com.digitalbooks.reader.functions.ReaderFunctions.TBLREADERINFO_TO_READERDTO;
+import static com.digitalbooks.reader.predicates.ReaderPredicates.EMAIL_ID_MATCHES;
 import static com.digitalbooks.reader.predicates.ReaderPredicates.IS_VALID_ACCOUNT_INFO;
 import static com.digitalbooks.reader.predicates.ReaderPredicates.IS_VALID_BOOK_PAYLOAD_WITH_ONE_BOOK_WITHOUT_CONTENT;
 import static com.digitalbooks.reader.predicates.ReaderPredicates.IS_VALID_BOOK_PAYLOAD_WITH_ONE_BOOK_WITH_CONTENT;
@@ -232,23 +233,27 @@ public class ReaderService implements ReaderIf {
 	}
 
 	@Override
-	public ReaderPayload findBookByPaymentId(Long paymentId) throws DigitalBooksException {
+	public ReaderPayload findBookByPaymentId(String emailId, Long paymentId) throws DigitalBooksException {
 		ReaderPayload readerPayload = new ReaderPayload();
 		Optional<TblReaderPayment> tblReaderPaymentOptional = tblReaderPaymentRepository.findById(paymentId);
 		if (tblReaderPaymentOptional.isPresent()) {
 			TblReaderInfo tblReaderInfo = tblReaderPaymentOptional.get().getParentTblReaderInfo();
-			readerPayload.setReaderDto(TBLREADERINFO_TO_READERDTO.apply(tblReaderInfo));
-			BookPayload bookPayload = new BookPayload();
-			try {
-				bookPayload = bookClient.getSubscribedBooks(tblReaderInfo.getReaderId());
-			} catch (FeignException feignException) {
-				throw new DigitalBooksException(STATUS_CODE_SOMETHING_WENT_WRONG, feignException.getMessage());
-			}
-			if (IS_VALID_BOOK_PAYLOAD_WITH_ONE_BOOK_WITHOUT_CONTENT.test(bookPayload)) {
-				readerPayload.setBookDtoList(bookPayload.getBookDtoList());
+			if (EMAIL_ID_MATCHES.test(tblReaderInfo, emailId)) {
+				readerPayload.setReaderDto(TBLREADERINFO_TO_READERDTO.apply(tblReaderInfo));
+				BookPayload bookPayload = new BookPayload();
+				try {
+					bookPayload = bookClient.getSubscribedBooks(tblReaderInfo.getReaderId());
+				} catch (FeignException feignException) {
+					throw new DigitalBooksException(STATUS_CODE_SOMETHING_WENT_WRONG, feignException.getMessage());
+				}
+				if (IS_VALID_BOOK_PAYLOAD_WITH_ONE_BOOK_WITHOUT_CONTENT.test(bookPayload)) {
+					readerPayload.setBookDtoList(bookPayload.getBookDtoList());
+				} else {
+					throw new DigitalBooksException(STATUS_CODE_ERROR_RETRIEVING_BOOK_CONTENT,
+							ERROR_RETRIEVING_BOOK_CONTENT);
+				}
 			} else {
-				throw new DigitalBooksException(STATUS_CODE_ERROR_RETRIEVING_BOOK_CONTENT,
-						ERROR_RETRIEVING_BOOK_CONTENT);
+				throw new DigitalBooksException(STATUS_CODE_INVALID_PAYMENT_ID, INVALID_PAYMENT_ID);
 			}
 		} else {
 			throw new DigitalBooksException(STATUS_CODE_INVALID_PAYMENT_ID, INVALID_PAYMENT_ID);
