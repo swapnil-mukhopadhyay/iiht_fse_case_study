@@ -1,0 +1,238 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:60660",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/v1/digitalbooks/author/{authorId}/books/{bookId}": {
+            "put": {
+                "tags": [
+                    "author-controller"
+                ],
+                "operationId": "editBook",
+                "parameters": [
+                    {
+                        "name": "authorId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthorPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthorPayload"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/digitalbooks/author/{authorId}/books": {
+            "post": {
+                "tags": [
+                    "author-controller"
+                ],
+                "operationId": "createBook",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthorPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthorPayload"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/digitalbooks/author/signup": {
+            "post": {
+                "tags": [
+                    "authentication-controller"
+                ],
+                "operationId": "signup",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CredentialPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JwtResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/digitalbooks/author/login": {
+            "post": {
+                "tags": [
+                    "authentication-controller"
+                ],
+                "operationId": "authenticate",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CredentialPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JwtResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AuthorPayload": {
+                "type": "object",
+                "properties": {
+                    "authorId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "bookDtoList": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BookDto"
+                        }
+                    }
+                }
+            },
+            "BookDto": {
+                "type": "object",
+                "properties": {
+                    "bookId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "logo": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "authorId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "author": {
+                        "type": "string"
+                    },
+                    "publisher": {
+                        "type": "string"
+                    },
+                    "publishedDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    },
+                    "content": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CredentialPayload": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "JwtResponse": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

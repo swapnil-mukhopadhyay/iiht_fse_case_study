@@ -1,0 +1,328 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:52924",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/v1/digitalbooks/readers/{emailId}/books/{bookId}/refund": {
+            "post": {
+                "tags": [
+                    "reader-controller"
+                ],
+                "operationId": "refundBook",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookPurchasePayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReaderPayload"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/digitalbooks/readers/{emailId}/books/find": {
+            "post": {
+                "tags": [
+                    "reader-controller"
+                ],
+                "operationId": "findBookByPaymentId",
+                "parameters": [
+                    {
+                        "name": "emailId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReaderPayload"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/digitalbooks/readers/books/buy": {
+            "post": {
+                "tags": [
+                    "reader-controller"
+                ],
+                "operationId": "buyBook",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BookPurchasePayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PaymentInvoicePayload"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/digitalbooks/readers/{emailId}/notification": {
+            "get": {
+                "tags": [
+                    "reader-controller"
+                ],
+                "operationId": "getNotifications",
+                "parameters": [
+                    {
+                        "name": "emailId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReaderPayload"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/digitalbooks/readers/{emailId}/books": {
+            "get": {
+                "tags": [
+                    "reader-controller"
+                ],
+                "operationId": "getSubscribedBooks",
+                "parameters": [
+                    {
+                        "name": "emailId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReaderPayload"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/digitalbooks/readers/{emailId}/books/{bookId}": {
+            "get": {
+                "tags": [
+                    "reader-controller"
+                ],
+                "operationId": "readBook",
+                "parameters": [
+                    {
+                        "name": "emailId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReaderPayload"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BookPurchasePayload": {
+                "type": "object",
+                "properties": {
+                    "bookId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "paymentId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "readerDto": {
+                        "$ref": "#/components/schemas/ReaderDto"
+                    }
+                }
+            },
+            "ReaderDto": {
+                "type": "object",
+                "properties": {
+                    "readerId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "emailId": {
+                        "type": "string"
+                    }
+                }
+            },
+            "BookDto": {
+                "type": "object",
+                "properties": {
+                    "bookId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "logo": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "authorId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "author": {
+                        "type": "string"
+                    },
+                    "publisher": {
+                        "type": "string"
+                    },
+                    "publishedDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    },
+                    "content": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ReaderPayload": {
+                "type": "object",
+                "properties": {
+                    "readerDto": {
+                        "$ref": "#/components/schemas/ReaderDto"
+                    },
+                    "bookDtoList": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BookDto"
+                        }
+                    },
+                    "notifications": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "PaymentInvoicePayload": {
+                "type": "object",
+                "properties": {
+                    "paymentId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "paymentDateTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "bookDto": {
+                        "$ref": "#/components/schemas/BookDto"
+                    }
+                }
+            }
+        }
+    }
+}
