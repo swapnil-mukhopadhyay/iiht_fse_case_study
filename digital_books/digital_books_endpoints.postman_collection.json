@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "755ef728-7a78-43e1-a8ed-5ac1ff23d3ac",
+		"_postman_id": "29c0a0a1-1251-4a6a-bb97-3a02eb2b9d77",
 		"name": "digital_books_endpoints",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15626919"
 	},
 	"item": [
 		{
@@ -35,7 +36,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"bookId\": 1,\r\n    \"readerDto\": {\r\n        \"readerId\" : 1,\r\n        \"name\":\"Tom\",\r\n        \"emailId\":\"tom@gmail.com\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"bookId\": 1,\r\n    \"readerDto\": {\r\n        \"name\":\"Tom\",\r\n        \"emailId\":\"tom@gmail.com\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -87,8 +88,11 @@
 		},
 		{
 			"name": "Reader : Read Book",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -126,7 +130,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"bookId\": 1,\r\n    \"readerDto\": {\r\n        \"name\":\"Tom\",\r\n        \"emailId\":\"tom@gmail.com\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"bookId\": 1,\r\n    \"readerDto\": {\r\n        \"readerId\":1,\r\n        \"name\":\"Tom\",\r\n        \"emailId\":\"tom@gmail.com\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -182,10 +186,16 @@
 			"name": "Author : Create Book",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhdXRob3IxIiwiZXhwIjoxNjY0MzQwMTUxLCJpYXQiOjE2NjQzMzk1NTF9.1q86O7m2drsCxHYfRFwEXIes1CT-qJg9GCs-dyzdn_ZgAxjTHcKxG1DXq-F0w2YADR9cmszfBY3Ku2phvLe8eQ",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"bookDtoList\": [\r\n        {\r\n            \"logo\": \"Tigers_Logo\",\r\n            \"title\": \"Tigers\",\r\n            \"category\": \"Education\",\r\n            \"price\": 150.0,\r\n            \"authorId\": 2,\r\n            \"author\": \"George\",\r\n            \"publisher\": \"Penguin\",\r\n            \"active\": true,\r\n            \"content\": \"waiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnsswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnsswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnss\"\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"authorId\":1,\r\n    \"name\":\"author1\",\r\n    \"bookDtoList\": [\r\n        {\r\n            \"logo\": \"Tigers_Logo\",\r\n            \"title\": \"Tigers\",\r\n            \"category\": \"Education\",\r\n            \"price\": 150.0,\r\n            \"authorId\": 1,\r\n            \"author\": \"author1\",\r\n            \"publisher\": \"Penguin\",\r\n            \"active\": true,\r\n            \"content\": \"waiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnsswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnsswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnss\"\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -193,7 +203,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/api/v1/digitalbooks/books/create",
+					"raw": "http://localhost:8888/api/v1/digitalbooks/author/1/books",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -203,8 +213,9 @@
 						"api",
 						"v1",
 						"digitalbooks",
-						"books",
-						"create"
+						"author",
+						"1",
+						"books"
 					]
 				}
 			},
@@ -214,10 +225,16 @@
 			"name": "Author : Edit Book",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhdXRob3IxIiwiZXhwIjoxNjY0MzQwMTUxLCJpYXQiOjE2NjQzMzk1NTF9.1q86O7m2drsCxHYfRFwEXIes1CT-qJg9GCs-dyzdn_ZgAxjTHcKxG1DXq-F0w2YADR9cmszfBY3Ku2phvLe8eQ",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"bookDtoList\": [\r\n        {\r\n            \"bookId\": 1,\r\n            \"logo\": \"Tigers_Logo\",\r\n            \"title\": \"Tigers\",\r\n            \"category\": \"Education\",\r\n            \"price\": 150.0,\r\n            \"authorId\": 2,\r\n            \"author\": \"George\",\r\n            \"publisher\": \"Penguin\",\r\n            \"publishedDate\": null,\r\n            \"active\": false,\r\n            \"content\": \"waiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnsswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnsswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnss\"\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"authorId\":1,\r\n    \"name\":\"author1\",\r\n    \"bookDtoList\": [\r\n        {\r\n            \"bookId\":1,\r\n            \"logo\": \"Tigers_Logo\",\r\n            \"title\": \"Tigers\",\r\n            \"category\": \"Education\",\r\n            \"price\": 150.0,\r\n            \"authorId\": 1,\r\n            \"author\": \"author1\",\r\n            \"publisher\": \"Penguin\",\r\n            \"active\": false,\r\n            \"content\": \"waiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnsswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnsswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnwaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnswaiuhasidfhwiuhwaidhwqidhwioqdhwiouqhdiwquhdwiqhduiqhdiuwqhdiuqwhdiuwqhdiuwhdiuwhdiuwhdiuwhdiuwhduiwhdiuwhduicikjsancjknvkjsacvkjsajsajkdfsadfhsakfhsakuhfdsakhfksahfksahfkshfkshafhsakfhauwahudfwuifufhwqifhqwiufhqwiufhqwiufhqiufqwiufwqiufqwifwqofoiqjfioqwjfoiwjqoifjwoifnonvoasnovnss\"\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -225,7 +242,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/api/v1/digitalbooks/books/edit",
+					"raw": "http://localhost:8888/api/v1/digitalbooks/author/1/books/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -235,8 +252,74 @@
 						"api",
 						"v1",
 						"digitalbooks",
+						"author",
+						"1",
 						"books",
-						"edit"
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Author : Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"author1\",\r\n    \"password\":\"password1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/v1/digitalbooks/author/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"digitalbooks",
+						"author",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Author : Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"author1\",\r\n    \"password\":\"password1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/v1/digitalbooks/author/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"v1",
+						"digitalbooks",
+						"author",
+						"login"
 					]
 				}
 			},
