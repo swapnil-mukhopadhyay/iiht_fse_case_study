@@ -67,6 +67,11 @@ public abstract class ReaderPredicates {
 			&& IS_NOT_NULL.test(bookPurchasePayload.getReaderDto().getEmailId())
 			&& IS_NOT_NULL.test(bookPurchasePayload.getReaderDto().getReaderId());
 	
+	public static final Predicate<BookPurchasePayload> IS_VALID_FIRST_TIME_BOOK_PURCHASE_PAYLOAD = bookPurchasePayload -> IS_NOT_NULL
+			.test(bookPurchasePayload.getBookId()) && IS_NOT_NULL.test(bookPurchasePayload.getReaderDto())
+			&& IS_NOT_NULL.test(bookPurchasePayload.getReaderDto().getName())
+			&& IS_NOT_NULL.test(bookPurchasePayload.getReaderDto().getEmailId());
+	
 	public static final BiPredicate<BookPurchasePayload, TblReaderInfo> IS_VALID_ACCOUNT_INFO = (bookPurchasePayload,
 			tblReaderInfo) -> bookPurchasePayload.getReaderDto().getName().equals(tblReaderInfo.getName())
 					&& bookPurchasePayload.getReaderDto().getEmailId().equals(tblReaderInfo.getEmailId());

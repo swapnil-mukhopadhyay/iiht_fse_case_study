@@ -17,6 +17,7 @@ import static com.digitalbooks.reader.predicates.ReaderPredicates.IS_VALID_ACCOU
 import static com.digitalbooks.reader.predicates.ReaderPredicates.IS_VALID_BOOK_PAYLOAD_WITH_ONE_BOOK_WITHOUT_CONTENT;
 import static com.digitalbooks.reader.predicates.ReaderPredicates.IS_VALID_BOOK_PAYLOAD_WITH_ONE_BOOK_WITH_CONTENT;
 import static com.digitalbooks.reader.predicates.ReaderPredicates.IS_VALID_BOOK_PURCHASE_PAYLOAD;
+import static com.digitalbooks.reader.predicates.ReaderPredicates.IS_VALID_FIRST_TIME_BOOK_PURCHASE_PAYLOAD;
 import static com.digitalbooks.reader.predicates.ReaderPredicates.READER_ALREADY_SUBSCRIBED;
 
 import java.time.LocalDateTime;
@@ -70,7 +71,7 @@ public class ReaderService implements ReaderIf {
 
 		PaymentInvoicePayload paymentInvoicePayload = new PaymentInvoicePayload();
 
-		if (IS_VALID_BOOK_PURCHASE_PAYLOAD.test(bookPurchasePayload)) {
+		if (IS_VALID_FIRST_TIME_BOOK_PURCHASE_PAYLOAD.test(bookPurchasePayload)) {
 
 			Optional<TblReaderInfo> tblReaderInfoOptional = tblReaderInfoRepository
 					.findByEmailId(bookPurchasePayload.getReaderDto().getEmailId());

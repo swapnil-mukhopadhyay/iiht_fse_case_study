@@ -13,7 +13,7 @@ public class ReaderKafkaListener {
 	@Autowired
 	private ReaderIf readerIf;
 
-	private static final String READER_NOTIFICATION_TOPIC = "notification";
+	private static final String READER_NOTIFICATION_TOPIC = "digital_books_notification";
 
 	@KafkaListener(topics = READER_NOTIFICATION_TOPIC, groupId = "group_id", containerFactory = "userKafkaListenerFactory")
 	public void consumeJson(NotificationPayload notificationPayload) {

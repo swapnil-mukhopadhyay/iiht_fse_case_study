@@ -8,6 +8,7 @@ import static com.digitalbooks.book.functions.BookFunctions.BOOKDTO_TO_TBLBOOKIN
 import static com.digitalbooks.book.functions.BookFunctions.TBLBOOKINFO_TO_BOOKDTO;
 import static com.digitalbooks.book.predicates.BookPredicates.IS_ACTIVE_BOOK;
 import static com.digitalbooks.book.predicates.BookPredicates.IS_NOT_NULL;
+import static com.digitalbooks.book.predicates.BookPredicates.IS_NULL;
 import static com.digitalbooks.book.predicates.BookPredicates.IS_NULL_OR_BLANK_STRING;
 import static com.digitalbooks.book.predicates.BookPredicates.IS_VALID_AUTHOR;
 import static com.digitalbooks.book.predicates.BookPredicates.IS_VALID_BOOK_PAYLOAD_WITH_ONE_BOOK_WITH_CONTENT;
@@ -34,6 +35,7 @@ import com.digitalbooks.book.entities.payload.BookPayload;
 import com.digitalbooks.book.entities.payload.BookPurchasePayload;
 import com.digitalbooks.book.exceptions.DigitalBooksException;
 import com.digitalbooks.book.interfaces.BookIf;
+import com.digitalbooks.book.predicates.BookPredicates;
 import com.digitalbooks.book.repositories.TblBookInfoRepository;
 import com.digitalbooks.book.repositories.TblBookSubRepository;
 import com.digitalbooks.common.models.NotificationPayload;
@@ -51,7 +53,7 @@ public class BookService implements BookIf{
 	@Autowired
 	private KafkaTemplate<String, NotificationPayload> kafkaTemplate;
 	
-	private static final String READER_NOTIFICATION_TOPIC= "notification";
+	private static final String READER_NOTIFICATION_TOPIC= "digital_books_notification";
 
 	@Override
 	public BookPayload searchBooks(String category, String author, Double price, String publisher) {
@@ -60,7 +62,7 @@ public class BookService implements BookIf{
 				.filter(TblBookInfo::getActive)
 				.filter(tblBookInfo->IS_NULL_OR_BLANK_STRING.test(category) || tblBookInfo.getCategory().equalsIgnoreCase(category))
 				.filter(tblBookInfo-> IS_NULL_OR_BLANK_STRING.test(author) || tblBookInfo.getAuthor().equalsIgnoreCase(author))
-				.filter(tblBookInfo-> IS_NOT_NULL.test(price) || tblBookInfo.getPrice()<=price)
+				.filter(tblBookInfo-> IS_NULL.test(price) || tblBookInfo.getPrice()<=price)
 				.filter(tblBookInfo-> IS_NULL_OR_BLANK_STRING.test(publisher) || tblBookInfo.getPublisher().equalsIgnoreCase(publisher))
 				.map(TBLBOOKINFO_TO_BOOKDTO)
 				.collect(Collectors.toList());
