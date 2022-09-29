@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,34 +38,34 @@ class ReaderApplicationTests {
 
 	@Test
 	void testGetSubscribedBooks() throws DigitalBooksException {
-		TblReaderInfo tblReaderInfo = getDummyTblReaderInfo();
-		BookPayload bookPayload = getDummyBookPayload();
+		TblReaderInfo tblReaderInfo = dummyTblReaderInfoSupplier.get();
+		BookPayload bookPayload = dummyBookPayloadSupplier.get();
 		when(tblReaderInfoRepository.findByEmailId(anyString())).thenReturn(Optional.ofNullable(tblReaderInfo));
 		when(bookClient.getSubscribedBooks(anyLong())).thenReturn(bookPayload);
 		ReaderPayload readerPayload = readerService.getSubscribedBooks("abc@gmail.com");
 		assertEquals(1L, readerPayload.getBookDtoList().get(0).getBookId());
-		assertEquals("The sky is blue", readerPayload.getBookDtoList().get(0).getContent());
+		assertEquals("author", readerPayload.getBookDtoList().get(0).getAuthor());
 		assertEquals(true, readerPayload.getBookDtoList().get(0).getActive());
 	}
 
-	private BookPayload getDummyBookPayload() {
+	private Supplier<BookPayload> dummyBookPayloadSupplier = () -> {
 		BookPayload bookPayload = new BookPayload();
 		BookDto bookDto = new BookDto();
 		bookDto.setActive(true);
 		bookDto.setBookId(1L);
-		bookDto.setContent("The sky is blue");
+		bookDto.setAuthor("author");
 		List<BookDto> bookDtoList = new ArrayList<>();
 		bookDtoList.add(bookDto);
 		bookPayload.setBookDtoList(bookDtoList);
 		return bookPayload;
-	}
+	};
 
-	private TblReaderInfo getDummyTblReaderInfo() {
+	private Supplier<TblReaderInfo> dummyTblReaderInfoSupplier = () -> {
 		TblReaderInfo tblReaderInfo = new TblReaderInfo();
 		tblReaderInfo.setReaderId(1L);
 		tblReaderInfo.setEmailId("abc@gmail.com");
 		tblReaderInfo.setName("abcde");
 		return tblReaderInfo;
-	}
+	};
 
 }
