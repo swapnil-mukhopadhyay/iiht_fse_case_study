@@ -9,5 +9,5 @@ export interface BookDto{
     publisher:string,
     publishedDate:string,
     active:boolean,
-    content:string
+    content?:string
 }

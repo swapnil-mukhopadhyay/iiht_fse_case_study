@@ -1,13 +1,69 @@
-<h1>Search Books</h1>
+<h3>Search Books</h3>
 
 
 <form [formGroup]="searchForm">
-    Category: <input type="text" placeholder="Enter category" /><br/>
-    Author: <input type="text" placeholder="Enter author" /><br/>
-    Price: <input formControlName="price" type="text" placeholder="Enter price" /><br/>
-    Publisher: <input type="text" placeholder="Enter publisher" /><br/>
     
-    <input [disabled]="searchForm.invalid" type="button" value="Search" />
+    Category: <input 
+                #category
+                type="text" 
+                placeholder="Enter category" />
+                <br/>
+
+    Author: <input 
+            #author
+            type="text" 
+            placeholder="Enter author" />
+            <br/>
+
+    Price Under: <input
+            #price 
+            formControlName="price" 
+            type="number" 
+            min="0"
+            placeholder="Enter price" />
+            <br/>
+
+    Publisher: <input 
+                #publisher
+                type="text" 
+                placeholder="Enter publisher" />
+                <br/>
+    
+    <input 
+        type="button"
+        value="Search"
+        (click)="findBooksByParams(category.value, author.value, price.value, publisher.value)"
+        [disabled]="searchForm.invalid" />
+
     <p *ngIf="searchForm.invalid">Error: Form is invalid</p>
     
 </form>
+
+
+<h5>Books which match your query : </h5>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Logo</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Publisher</th>
+            <th>Published Date</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let bookDto of bookPayload.bookDtoList;let i=index">
+            <td>{{bookDto.bookId}}</td>
+            <td>{{bookDto.logo}}</td>
+            <td>{{bookDto.title}}</td>
+            <td>{{bookDto.author}}</td>
+            <td>{{bookDto.category}}</td>
+            <td>{{bookDto.publisher}}</td>
+            <td>{{bookDto.publishedDate}}</td>
+            <td>{{bookDto.price}}</td>
+        </tr>
+    </tbody>
+</table>

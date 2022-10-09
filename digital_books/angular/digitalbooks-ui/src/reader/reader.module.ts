@@ -7,9 +7,15 @@ import { SubscriptionsComponent } from './subscriptions/subscriptions.component'
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes:Routes = [
   { path: "search", component: SearchComponent },
+  { path: "subscribe", component: SubscribeComponent },
+  { path: "subscriptions", component: SubscriptionsComponent },
+  { path: "notifications", component: NotificationsComponent },
+  { path: "refund", component: RefundComponent,
+},
 ];
 
 @NgModule({
@@ -23,7 +29,8 @@ const routes:Routes = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    HttpClientModule
   ]
 })
 export class ReaderModule { }
