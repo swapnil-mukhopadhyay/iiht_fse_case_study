@@ -1,0 +1,13 @@
+<h1>Search Books</h1>
+
+
+<form [formGroup]="searchForm">
+    Category: <input type="text" placeholder="Enter category" /><br/>
+    Author: <input type="text" placeholder="Enter author" /><br/>
+    Price: <input formControlName="price" type="text" placeholder="Enter price" /><br/>
+    Publisher: <input type="text" placeholder="Enter publisher" /><br/>
+    
+    <input [disabled]="searchForm.invalid" type="button" value="Search" />
+    <p *ngIf="searchForm.invalid">Error: Form is invalid</p>
+    
+</form>
