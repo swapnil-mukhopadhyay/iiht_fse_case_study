@@ -1,1 +1,30 @@
-<p>subscribe works!</p>
+<h3>Purchase Book</h3>
+
+<form [formGroup]="purchaseForm">
+
+
+    Enter your Name: <input 
+                     #name
+                     formControlName="name"
+                     type="text"
+                     placeholder="Enter Name" />
+                     <br/>
+    
+    Enter your Email ID: <input 
+                          #emailId
+                          formControlName="emailId"
+                          type="text"
+                          placeholder="Enter Email" />
+                          <br/>
+    
+    <input 
+        type="button"
+        value="Purchase"
+        (click)="buyBook(name.value,emailId.value)"
+        [disabled]="purchaseForm.invalid" />
+    
+</form>
+
+<br/>
+
+<h5>Payment Success/Already Purchased Message</h5>

@@ -52,6 +52,7 @@
             <th>Publisher</th>
             <th>Published Date</th>
             <th>Price</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -64,6 +65,11 @@
             <td>{{bookDto.publisher}}</td>
             <td>{{bookDto.publishedDate}}</td>
             <td>{{bookDto.price}}</td>
+            <td><input 
+                type="button"
+                value="Subscribe"
+                (click)="subscribe(bookDto)"
+                /></td>
         </tr>
     </tbody>
 </table>

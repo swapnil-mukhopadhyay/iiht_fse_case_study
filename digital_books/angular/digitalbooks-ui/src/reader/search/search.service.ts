@@ -17,7 +17,7 @@ export class SearchService {
 
   findBooksByParams(category: string, author: string, price: number, publisher: string) {
 
-    let url = this.search_url_prefix
+    var url = this.search_url_prefix
     if (null != category || null != author || null != price || null != publisher) {
       url = url + "?";
       if (category) {
@@ -26,15 +26,15 @@ export class SearchService {
       if (author) {
         url = url + "author=" + author + "&";
       }
-      if (price && price!=0) {
+      if (price && price != 0) {
         url = url + "price=" + price + "&";
       }
       if (publisher) {
         url = url + "publisher=" + publisher + "&";
       }
-      url=url.substring(0, url.length - 1);
+      url = url.substring(0, url.length - 1);
     }
-    console.log("constructed URL : " + url)
+    console.log("constructed Search URL : " + url)
     return this.http.get(url);
   }
 

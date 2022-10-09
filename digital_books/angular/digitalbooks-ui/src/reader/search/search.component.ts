@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { BookPayload } from '../../models/book.payload';
-import { BookDto } from '../../models/book.dto';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BookDto } from 'src/models/book.dto';
+import { BookPayload } from 'src/models/book.payload';
 import { SearchService } from './search.service';
 
 @Component({
@@ -40,6 +40,10 @@ export class SearchComponent {
     }
   }
 
+  subscribe(bookDto:BookDto){
+    console.log(bookDto);
+  }
+
   findAllBooks() {
     this._searchService.findAllBooks().subscribe({
       next: (res: any) => {
@@ -49,7 +53,8 @@ export class SearchComponent {
       error: (err: any) => {
         console.log(err)
         this.bookPayload.bookDtoList=[
-          {bookId:1,logo:'booklogo.png',title:'The Best Book',category:'Education',price:100,authorId:1,author:'Author1',publisher:'Penguin', publishedDate:'2121',active:true}
+          {bookId:1,logo:'booklogo.png',title:'The Best Book',category:'Education',price:100,authorId:1,author:'Author1',publisher:'Penguin', publishedDate:'02/02/2021',active:true},
+          {bookId:2,logo:'worstbooklogo.png',title:'The Worst Book',category:'Education',price:150,authorId:2,author:'Author2',publisher:'Dolphin', publishedDate:'02/03/2021',active:true}
         ]
       }
     })

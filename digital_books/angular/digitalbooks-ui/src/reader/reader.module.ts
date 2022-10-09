@@ -8,6 +8,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewComponent } from './view/view.component';
+import { ReadComponent } from './read/read.component';
 
 const routes:Routes = [
   { path: "search", component: SearchComponent },
@@ -24,7 +26,9 @@ const routes:Routes = [
     RefundComponent,
     SubscribeComponent,
     SubscriptionsComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    ViewComponent,
+    ReadComponent
   ],
   imports: [
     CommonModule,
