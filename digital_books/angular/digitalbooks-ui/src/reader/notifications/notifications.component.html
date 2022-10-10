@@ -1,1 +1,31 @@
-<p>notifications works!</p>
+<h3>Your Notifications</h3>
+
+<form [formGroup]="emailForm">
+    
+    Enter your Email ID: <input 
+                #emailId
+                formControlName="emailId"
+                type="text"
+                placeholder="Enter Email" />
+               
+    
+    <input 
+        type="button"
+        value="Get Notifications"
+        (click)="getNotifications(emailId.value)"
+        [disabled]="emailForm.invalid" />
+    
+</form>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Notifications</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let notification of readerPayload.notifications;let i=index">
+            <td>{{notification}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -115,10 +115,20 @@ public class ReaderService implements ReaderIf {
 						&& bookPurchasePayload.getBookId().equals(tblReaderPayment.getBookId()))
 				.findFirst();
 		if (tblReaderPaymentOptional.isPresent()) {
+			setReaderDtoInPaymentInvoice(paymentInvoicePayload, tblReaderPaymentOptional);
 			paymentInvoicePayload.setBookDto(bookPayload.getBookDtoList().get(0));
 			paymentInvoicePayload.setPaymentDateTime(tblReaderPaymentOptional.get().getPaymentDateTime());
 			paymentInvoicePayload.setPaymentId(tblReaderPaymentOptional.get().getPaymentId());
 		}
+	}
+
+	private void setReaderDtoInPaymentInvoice(PaymentInvoicePayload paymentInvoicePayload,
+			Optional<TblReaderPayment> tblReaderPaymentOptional) {
+		ReaderDto readerDto=new ReaderDto();
+		readerDto.setName(tblReaderPaymentOptional.get().getParentTblReaderInfo().getName());
+		readerDto.setEmailId(tblReaderPaymentOptional.get().getParentTblReaderInfo().getEmailId());
+		readerDto.setReaderId(tblReaderPaymentOptional.get().getParentTblReaderInfo().getReaderId());
+		paymentInvoicePayload.setReaderDto(readerDto);
 	}
 
 	private void rethrowDigitalBooksException(DigitalBooksException digitalBooksException)
@@ -233,13 +243,15 @@ public class ReaderService implements ReaderIf {
 	}
 
 	@Override
-	public ReaderPayload findBookByPaymentId(String emailId, Long paymentId) throws DigitalBooksException {
-		ReaderPayload readerPayload = new ReaderPayload();
+	public PaymentInvoicePayload findBookByPaymentId(String emailId, Long paymentId) throws DigitalBooksException {
+		PaymentInvoicePayload paymentInvoicePayload=new PaymentInvoicePayload();
 		Optional<TblReaderPayment> tblReaderPaymentOptional = tblReaderPaymentRepository.findById(paymentId);
 		if (tblReaderPaymentOptional.isPresent()) {
 			TblReaderInfo tblReaderInfo = tblReaderPaymentOptional.get().getParentTblReaderInfo();
 			if (EMAIL_ID_MATCHES.test(tblReaderInfo, emailId)) {
-				readerPayload.setReaderDto(TBLREADERINFO_TO_READERDTO.apply(tblReaderInfo));
+				paymentInvoicePayload.setPaymentId(tblReaderPaymentOptional.get().getPaymentId());
+				paymentInvoicePayload.setPaymentDateTime(tblReaderPaymentOptional.get().getPaymentDateTime());
+				paymentInvoicePayload.setReaderDto(TBLREADERINFO_TO_READERDTO.apply(tblReaderInfo));
 				BookPayload bookPayload = new BookPayload();
 				try {
 					bookPayload = bookClient.getSubscribedBooks(tblReaderInfo.getReaderId());
@@ -247,7 +259,7 @@ public class ReaderService implements ReaderIf {
 					throw new DigitalBooksException(STATUS_CODE_SOMETHING_WENT_WRONG, feignException.getMessage());
 				}
 				if (IS_VALID_BOOK_PAYLOAD_WITH_ONE_BOOK_WITHOUT_CONTENT.test(bookPayload)) {
-					readerPayload.setBookDtoList(bookPayload.getBookDtoList());
+					paymentInvoicePayload.setBookDto(bookPayload.getBookDtoList().get(0));
 				} else {
 					throw new DigitalBooksException(STATUS_CODE_ERROR_RETRIEVING_BOOK_CONTENT,
 							ERROR_RETRIEVING_BOOK_CONTENT);
@@ -258,7 +270,7 @@ public class ReaderService implements ReaderIf {
 		} else {
 			throw new DigitalBooksException(STATUS_CODE_INVALID_PAYMENT_ID, INVALID_PAYMENT_ID);
 		}
-		return readerPayload;
+		return paymentInvoicePayload;
 	}
 
 	@Override

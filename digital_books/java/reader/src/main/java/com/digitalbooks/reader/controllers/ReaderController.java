@@ -37,7 +37,7 @@ public class ReaderController {
 	}
 	
 	@PostMapping("{emailId}/books/find")
-	public ReaderPayload findBookByPaymentId(@PathVariable String emailId, @RequestBody Long paymentId)
+	public PaymentInvoicePayload findBookByPaymentId(@PathVariable String emailId, @RequestBody Long paymentId)
 			throws DigitalBooksException {
 		return readerIf.findBookByPaymentId(emailId,paymentId);
 	}

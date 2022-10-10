@@ -43,6 +43,10 @@ export class SubscribeComponent implements OnInit{
       publisher: "",
       title: ""
     },
+    readerDto:{
+      name:"",
+      emailId:""
+    },
     paymentDateTime: ''
   }
 
@@ -89,8 +93,8 @@ export class SubscribeComponent implements OnInit{
         this.paymentInvoiceHtml.bookId="Book ID : "+this.paymentInvoicePayload.bookDto.bookId
         this.paymentInvoiceHtml.paymentId="Payment ID : "+this.paymentInvoicePayload.paymentId
         this.paymentInvoiceHtml.paymentDate="Payment Done On : "+this.paymentInvoicePayload.paymentDateTime
-        this.paymentInvoiceHtml.readerName="Name of Reader : "+name
-        this.paymentInvoiceHtml.readerEmail="Reader Email ID : "+emailId
+        this.paymentInvoiceHtml.readerName="Name of Reader : "+this.paymentInvoicePayload.readerDto.name
+        this.paymentInvoiceHtml.readerEmail="Reader Email ID : "+this.paymentInvoicePayload.readerDto.emailId
       },
       error: (err: any) => {
         console.log(err)

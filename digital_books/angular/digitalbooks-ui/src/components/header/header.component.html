@@ -1,7 +1,8 @@
 <div>
-    <h1>Digital Books - Reader</h1>
+    <h1 *ngIf="!authorLoggedIn">Digital Books - Reader</h1>
+    <h1 *ngIf="authorLoggedIn">Digital Books - Author</h1>
 
-    <a routerLink="/reader/search">| Home |</a>
+    <a routerLink="/home">| Home |</a>
 
     <a *ngIf="!authorLoggedIn" routerLink="/reader/search">| Search & Subscribe |</a>
     <a *ngIf="!authorLoggedIn" routerLink="/reader/subscriptions">| Your Subscriptions |</a>
