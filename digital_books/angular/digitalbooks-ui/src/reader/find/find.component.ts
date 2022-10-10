@@ -28,7 +28,7 @@ export class FindComponent {
   }
 
   findInvoice(paymentId: string, emailId: string) {
-
+    
   }
 
 }
