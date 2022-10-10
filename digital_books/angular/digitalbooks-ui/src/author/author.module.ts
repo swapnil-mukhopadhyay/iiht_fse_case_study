@@ -9,7 +9,6 @@ import { BooksComponent } from './books/books.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { BlockComponent } from './block/block.component';
 
 const routes:Routes = [
   { path: "create", component: CreateComponent },
@@ -17,8 +16,7 @@ const routes:Routes = [
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },
   { path: "logout", component: LogoutComponent},
-  { path: "books", component: BooksComponent},
-  { path: "block", component: BlockComponent},
+  { path: "books", component: BooksComponent}
 ];
 
 @NgModule({
@@ -28,8 +26,7 @@ const routes:Routes = [
     CreateComponent,
     EditComponent,
     LogoutComponent,
-    BooksComponent,
-    BlockComponent
+    BooksComponent
   ],
   imports: [
     CommonModule,

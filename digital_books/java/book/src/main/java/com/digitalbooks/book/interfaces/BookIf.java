@@ -20,4 +20,6 @@ public interface BookIf {
 
 	public BookPayload unsubscribeBook(BookPurchasePayload bookPurchasePayload) throws DigitalBooksException;
 
+	public BookPayload getAllBooksForAuthor(Long authorId);
+
 }

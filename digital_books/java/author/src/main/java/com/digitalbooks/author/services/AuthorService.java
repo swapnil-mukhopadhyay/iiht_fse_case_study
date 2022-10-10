@@ -131,6 +131,7 @@ public class AuthorService implements AuthorIf {
 			if (tblAuthorInfoOptional.isPresent()) {
 				Optional<TblAuthorBook> tblAuthorBookOptional = tblAuthorBookRepository.findByBookId(bookId);
 				try {
+					authorPayload.getBookDtoList().get(0).setAuthorId(tblAuthorInfoOptional.get().getAuthorId());
 					editBookIfValid(authorPayload, tblAuthorBookOptional);
 				} catch (DigitalBooksException digitalBooksException) {
 					rethrowDigitalBooksException(digitalBooksException);
@@ -162,6 +163,16 @@ public class AuthorService implements AuthorIf {
 		} else {
 			throw new DigitalBooksException(STATUS_CODE_BOOK_BLOCKED_OR_DOESNT_EXIST, BOOK_BLOCKED_OR_DOESNT_EXIST);
 		}
+	}
+
+	@Override
+	public BookPayload getAllBooksForAuthor(String authorName) throws DigitalBooksException {
+		BookPayload bookPayload=new BookPayload();
+		Optional<TblAuthorInfo> tblAuthorInfoOptional = tblAuthorInfoRepository.findByName(authorName);
+		if(tblAuthorInfoOptional.isPresent()) {
+			bookPayload= bookClient.getAllBooksForAuthor(tblAuthorInfoOptional.get().getAuthorId());
+		}
+		return bookPayload;
 	}
 
 }

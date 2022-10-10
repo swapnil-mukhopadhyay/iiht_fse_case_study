@@ -1,6 +1,7 @@
 package com.digitalbooks.author.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.digitalbooks.author.entities.payload.AuthorPayload;
+import com.digitalbooks.author.entities.payload.BookPayload;
 import com.digitalbooks.author.exceptions.DigitalBooksException;
 import com.digitalbooks.author.interfaces.AuthorIf;
 
@@ -30,5 +32,10 @@ public class AuthorController {
 			throws DigitalBooksException {
 		return authorIf.editBook(authorPayload, bookId);
 	}
-
+	
+	@GetMapping("{authorName}/all")
+	public BookPayload editBook(@PathVariable String authorName)
+			throws DigitalBooksException {
+		return authorIf.getAllBooksForAuthor(authorName);
+	}
 }

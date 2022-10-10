@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { isEmpty } from 'rxjs';
 import { PaymentInvoicePayload } from 'src/models/payment.invoice.payload';
 import { ReaderPayload } from 'src/models/reader.payload';
 import { FindService } from './find.service';
@@ -51,6 +52,13 @@ export class FindComponent {
       emailId: new FormControl("", [Validators.required, Validators.email])
     })
   }
+  viewInvoice(paymentInvoiceHtml:any){
+    localStorage.setItem('invoice',JSON.stringify(paymentInvoiceHtml))
+    this.router.navigate(['reader/invoice'])
+  }
+
+  invoiceGenerated:boolean=false
+
 
   findInvoice(paymentId: string, emailId: string) {
     this._findService.findBookByPaymentId(emailId, Number(paymentId)).subscribe({
@@ -67,6 +75,7 @@ export class FindComponent {
           this.paymentInvoiceHtml.paymentDate = "Payment Done On : " + this.paymentInvoicePayload.paymentDateTime
           this.paymentInvoiceHtml.readerName = "Name of Reader : " + this.paymentInvoicePayload.readerDto.name
           this.paymentInvoiceHtml.readerEmail = "Reader Email ID : " + this.paymentInvoicePayload.readerDto.emailId
+          this.invoiceGenerated=true
         }
       },
       error: (err: any) => {

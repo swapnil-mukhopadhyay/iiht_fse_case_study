@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invoice',
@@ -7,7 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InvoiceComponent implements OnInit {
 
-  constructor() { }
+  paymentInvoiceHtml: any = {
+    heading: "",
+    title: "",
+    bookId: "",
+    paymentId: "",
+    paymentDate: "",
+    readerName: "",
+    readerEmail: ""
+  }
+
+  constructor(private router:Router) { 
+    var invoice=localStorage.getItem('invoice')
+    if(invoice){
+      this.paymentInvoiceHtml=JSON.parse(invoice)
+    }else{
+      this.router.navigate(['reader/find'])
+    }
+    localStorage.removeItem('invoice')
+  }
 
   ngOnInit(): void {
   }

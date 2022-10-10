@@ -27,9 +27,11 @@
 
 <br/>
 
-<h4>{{paymentInvoiceHtml.heading}}</h4>
-<h5>{{paymentInvoiceHtml.title}}</h5>
-<h5>{{paymentInvoiceHtml.bookId}}</h5>
-<h5>{{paymentInvoiceHtml.paymentId}}</h5>
-<h5>{{paymentInvoiceHtml.readerName}}</h5>
-<h5>{{paymentInvoiceHtml.readerEmail}}</h5>
+<h4 *ngIf="invoiceGenerated">Payment Invoice Found !</h4>
+
+<br/>
+<input 
+*ngIf="invoiceGenerated"
+type="button"
+value="View Invoice"
+(click)="viewInvoice(paymentInvoiceHtml)"/>

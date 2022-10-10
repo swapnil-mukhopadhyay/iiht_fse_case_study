@@ -236,5 +236,19 @@ public class BookService implements BookIf{
 		return bookPayload;
 	}
 
+	@Override
+	public BookPayload getAllBooksForAuthor(Long authorId) {
+		BookPayload bookPayload = new BookPayload();
+		List<BookDto> bookDtoList=new ArrayList<>();
+		tblBookInfoRepository.findByAuthorId(authorId).stream()
+		.forEach(tblBookInfo->{
+			BookDto bookDto=TBLBOOKINFO_TO_BOOKDTO.apply(tblBookInfo);
+			bookDto.setContent(tblBookInfo.getChildTblBookContent().getContent());
+			bookDtoList.add(bookDto);
+		});
+		
+		bookPayload.setBookDtoList(bookDtoList);
+		return bookPayload;
+	}
 
 }

@@ -1,1 +1,41 @@
-<p>books works!</p>
+<h3>My Books</h3>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Logo</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Publisher</th>
+            <th>Published Date</th>
+            <th>Price</th>
+            <th>Active</th>
+            <th>Edit</th>
+            <th>Block/Unblock</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let bookDto of bookPayload.bookDtoList;let i=index">
+            <td>{{bookDto.bookId}}</td>
+            <td>{{bookDto.logo}}</td>
+            <td>{{bookDto.title}}</td>
+            <td>{{bookDto.author}}</td>
+            <td>{{bookDto.category}}</td>
+            <td>{{bookDto.publisher}}</td>
+            <td>{{bookDto.publishedDate}}</td>
+            <td>{{bookDto.price}}</td>
+            <td>{{bookDto.active}}</td>
+            <td><input 
+                type="button"
+                value="Edit"
+                (click)="editBook(bookDto)"/></td>
+                 
+            <td><input 
+                type="button"
+                value="{{getToggleButtonValue(bookDto.active)}}"
+                (click)="toggleActive(bookDto)"/></td>
+        </tr>
+    </tbody>
+</table>

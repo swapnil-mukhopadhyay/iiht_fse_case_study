@@ -59,6 +59,8 @@ export class SubscribeComponent implements OnInit {
     readerEmail: ""
   }
 
+  invoiceGenerated:boolean=false
+
   constructor(private _subscribeService: SubscribeService, private router: Router) {
     this.purchaseForm = new FormGroup({
       name: new FormControl("", [Validators.required]),
@@ -72,6 +74,11 @@ export class SubscribeComponent implements OnInit {
     } else {
       this.router.navigate(["/reader/search"]);
     }
+  }
+
+  viewInvoice(paymentInvoiceHtml:any){
+    localStorage.setItem('invoice',JSON.stringify(paymentInvoiceHtml))
+    this.router.navigate(['reader/invoice'])
   }
 
   buyBook(name: string, emailId: string) {
@@ -97,6 +104,7 @@ export class SubscribeComponent implements OnInit {
           this.paymentInvoiceHtml.paymentDate = "Payment Done On : " + this.paymentInvoicePayload.paymentDateTime
           this.paymentInvoiceHtml.readerName = "Name of Reader : " + this.paymentInvoicePayload.readerDto.name
           this.paymentInvoiceHtml.readerEmail = "Reader Email ID : " + this.paymentInvoicePayload.readerDto.emailId
+          this.invoiceGenerated=true
         }
       },
       error: (err: any) => {

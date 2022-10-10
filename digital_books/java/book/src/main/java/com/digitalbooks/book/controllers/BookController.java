@@ -62,5 +62,10 @@ public class BookController {
 	public BookPayload unsubscribeBook(@RequestBody BookPurchasePayload bookPurchasePayload) throws DigitalBooksException {
 		return bookIf.unsubscribeBook(bookPurchasePayload);
 	}
+	
+	@GetMapping("{authorId}/all")
+	public BookPayload getAllBooksForAuthor(@PathVariable Long authorId) throws DigitalBooksException {
+		return bookIf.getAllBooksForAuthor(authorId);
+	}
 
 }
