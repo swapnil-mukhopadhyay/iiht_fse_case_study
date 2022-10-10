@@ -30,11 +30,12 @@
             <th>Publisher</th>
             <th>Published Date</th>
             <th>Price</th>
-            <th>Action</th>
+            <th>Read</th>
+            <th>Refund</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let bookDto of bookPayload.bookDtoList;let i=index">
+        <tr *ngFor="let bookDto of readerPayload.bookDtoList;let i=index">
             <td>{{bookDto.bookId}}</td>
             <td>{{bookDto.logo}}</td>
             <td>{{bookDto.title}}</td>
@@ -45,9 +46,13 @@
             <td>{{bookDto.price}}</td>
             <td><input 
                 type="button"
-                value="View"
-                (click)="viewBook(bookDto)"
-                /></td>
+                value="Read"
+                (click)="readBook(bookDto,emailId.value)"/></td>
+                 
+            <td><input 
+                type="button"
+                value="Refund"
+                (click)="refundBook(bookDto,emailId.value)"/></td>
         </tr>
     </tbody>
 </table>

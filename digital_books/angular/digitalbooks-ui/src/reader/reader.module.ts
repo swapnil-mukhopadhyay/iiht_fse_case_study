@@ -8,7 +8,6 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { ViewComponent } from './view/view.component';
 import { ReadComponent } from './read/read.component';
 
 const routes:Routes = [
@@ -16,8 +15,8 @@ const routes:Routes = [
   { path: "subscribe", component: SubscribeComponent },
   { path: "subscriptions", component: SubscriptionsComponent },
   { path: "notifications", component: NotificationsComponent },
-  { path: "refund", component: RefundComponent,
-},
+  { path: "refund", component: RefundComponent},
+  { path: "read", component: ReadComponent},
 ];
 
 @NgModule({
@@ -27,7 +26,6 @@ const routes:Routes = [
     SubscribeComponent,
     SubscriptionsComponent,
     NotificationsComponent,
-    ViewComponent,
     ReadComponent
   ],
   imports: [

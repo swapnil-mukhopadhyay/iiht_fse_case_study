@@ -2,6 +2,6 @@ import { ReaderDto } from './reader.dto';
 
 export interface  BookPurchasePayload{
     bookId:number,
-    paymentId:number,
+    paymentId?:number,
     readerDto:ReaderDto
 }
