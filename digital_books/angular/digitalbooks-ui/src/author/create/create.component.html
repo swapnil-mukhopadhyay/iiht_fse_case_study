@@ -1,2 +1,68 @@
-<p>create works!</p>
+<h3>Author Log In</h3>
 
+<form [formGroup]="bookForm">
+    
+    Logo: <input 
+            #logo
+            formControlName="logo"
+            type="text" 
+            placeholder="Upload Logo" />
+            <br/>
+
+    Title: <input 
+            #title
+            formControlName="title"
+            type="text" 
+            placeholder="Enter Title" />
+            <br/>
+
+    
+    Category: <input 
+            #category
+            formControlName="category"
+            type="text" 
+            placeholder="Enter Category" />
+            <br/>
+
+    Price: <input
+            #price 
+            formControlName="price" 
+            type="number" 
+            min="0"
+            placeholder="Enter price" />
+            <br/>
+
+    Publisher: <input 
+                #publisher
+                formControlName="publisher" 
+                type="text" 
+                placeholder="Enter publisher" />
+                <br/>
+
+    Active: <input 
+            #active
+            formControlName="active" 
+            type="text" 
+            placeholder="Enter active"
+             />
+    <br/>
+    Content: <input 
+            #content
+            formControlName="content" 
+            type="text" 
+            placeholder="Enter Content" />
+            <br/>
+            <br/>
+    
+    <input 
+        type="button"
+        value="Create Book"
+        (click)="createBook(logo.value,title.value,category.value,price.value,publisher.value,active.value,content.value)"
+        [disabled]="bookForm.invalid" />
+
+    <p *ngIf="bookForm.invalid">Fill up all fields properly</p>
+    
+</form>
+
+
+<h4>{{message}}</h4>

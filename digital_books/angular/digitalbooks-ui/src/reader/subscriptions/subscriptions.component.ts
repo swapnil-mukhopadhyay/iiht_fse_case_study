@@ -17,16 +17,16 @@ import { SubscriptionsService } from './subscriptions.service';
 export class SubscriptionsComponent {
   emailForm: FormGroup;
   readerPayload: ReaderPayload = {
-    readerDto:{
-      readerId:0,
-      name:'',
-      emailId:''
+    readerDto: {
+      readerId: 0,
+      name: '',
+      emailId: ''
     },
-    notifications:[],
+    notifications: [],
     bookDtoList: []
   }
 
-  constructor(private _subscriptionService: SubscriptionsService, private router:Router) {
+  constructor(private _subscriptionService: SubscriptionsService, private router: Router) {
     this.emailForm = new FormGroup({
       emailId: new FormControl("", [Validators.required, Validators.email])
     })
@@ -35,39 +35,34 @@ export class SubscriptionsComponent {
   getSubscriptions(emailId: string) {
     this._subscriptionService.getSubscriptions(emailId).subscribe({
       next: (res: any) => {
-        this.readerPayload = res;
-        console.log(this.readerPayload);
+        if (!!res.statusCode) {
+          alert(res.message)
+        } else {
+          this.readerPayload = res;
+          console.log(this.readerPayload);
+        }
       },
       error: (err: any) => {
         console.log(err)
-        this.readerPayload.readerDto={
-          readerId:1,
-          name:'reader',
-          emailId:'reader@gmail'
-        }
-        this.readerPayload.bookDtoList = [
-          { bookId: 1, logo: 'booklogo.png', title: 'The Best Book', category: 'Education', price: 100, authorId: 1, author: 'Author1', publisher: 'Penguin', publishedDate: '02/02/2021', active: true },
-          { bookId: 2, logo: 'worstbooklogo.png', title: 'The Worst Book', category: 'Education', price: 150, authorId: 2, author: 'Author2', publisher: 'Dolphin', publishedDate: '02/03/2021', active: true }
-        ]
       }
     })
   }
 
-  readBook(bookDto:BookDto,emailId:string){
-    var readUrl= emailId+"/books/"+bookDto.bookId;
-    localStorage.setItem("read",readUrl);
+  readBook(bookDto: BookDto, emailId: string) {
+    var readUrl = emailId + "/books/" + bookDto.bookId;
+    localStorage.setItem("read", readUrl);
     this.router.navigate(["/reader/read"]);
 
   }
 
-  refundBook(bookDto:BookDto,emailId:string){
-    var refundUrl= emailId+"/books/"+bookDto.bookId+"/refund";
-    localStorage.setItem("refund",refundUrl);
-    var bookPurchasePayload:BookPurchasePayload={
-      bookId:bookDto.bookId,
-      readerDto:this.readerPayload.readerDto
+  refundBook(bookDto: BookDto, emailId: string) {
+    var refundUrl = emailId + "/books/" + bookDto.bookId + "/refund";
+    localStorage.setItem("refund", refundUrl);
+    var bookPurchasePayload: BookPurchasePayload = {
+      bookId: bookDto.bookId,
+      readerDto: this.readerPayload.readerDto
     }
-    localStorage.setItem("refundPayload",JSON.stringify(bookPurchasePayload))
+    localStorage.setItem("refundPayload", JSON.stringify(bookPurchasePayload))
     this.router.navigate(["/reader/refund"]);
   }
 

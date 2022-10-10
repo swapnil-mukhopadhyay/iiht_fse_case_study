@@ -10,6 +10,6 @@ public interface AuthorIf {
 
 	public AuthorPayload createBook(AuthorPayload authorPayload) throws DigitalBooksException;
 
-	public AuthorPayload editBook(AuthorPayload authorPayload, Long authorId, Long bookId) throws DigitalBooksException;
+	public AuthorPayload editBook(AuthorPayload authorPayload, Long bookId) throws DigitalBooksException;
 	
 }

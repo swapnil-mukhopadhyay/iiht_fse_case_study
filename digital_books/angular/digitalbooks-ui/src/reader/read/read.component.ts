@@ -9,19 +9,19 @@ import { ReadService } from './read.service';
   templateUrl: './read.component.html',
   styleUrls: ['./read.component.scss']
 })
-export class ReadComponent implements OnInit{
+export class ReadComponent implements OnInit {
 
   readerPayload: ReaderPayload = {
-    readerDto:{
-      readerId:0,
-      name:'',
-      emailId:''
+    readerDto: {
+      readerId: 0,
+      name: '',
+      emailId: ''
     },
-    notifications:[],
+    notifications: [],
     bookDtoList: []
   }
 
-  bookDto:BookDto={
+  bookDto: BookDto = {
     active: true,
     author: "",
     bookId: 0,
@@ -34,31 +34,31 @@ export class ReadComponent implements OnInit{
     title: ""
   }
 
-  constructor(private _readService:ReadService, private router:Router) { }
+  constructor(private _readService: ReadService, private router: Router) { }
 
-  readBook(url:string){
+  readBook(url: string) {
     this._readService.readBook(url).subscribe({
       next: (res: any) => {
-        this.readerPayload = res;
-        this.bookDto=this.readerPayload.bookDtoList[0]
-        console.log(this.readerPayload);
+        if (!!res.statusCode) {
+          alert(res.message)
+        } else {
+          this.readerPayload = res;
+          this.bookDto = this.readerPayload.bookDtoList[0]
+          console.log(this.readerPayload);
+        }
       },
       error: (err: any) => {
         console.log(err)
-        this.readerPayload.bookDtoList = [
-          { bookId: 1, logo: 'booklogo.png', title: 'The Best Book', category: 'Education', price: 100, authorId: 1, author: 'Author1', publisher: 'Penguin', publishedDate: '02/02/2021', active: true ,content:'this is the content'}
-        ]
-        this.bookDto=this.readerPayload.bookDtoList[0]
       }
     })
   }
 
   ngOnInit(): void {
-    var readUrl=localStorage.getItem('read');
-    if(readUrl){
+    var readUrl = localStorage.getItem('read');
+    if (readUrl) {
       this.readBook(readUrl);
       localStorage.removeItem('read')
-    }else{
+    } else {
       this.router.navigate(["/reader/subscriptions"]);
     }
   }

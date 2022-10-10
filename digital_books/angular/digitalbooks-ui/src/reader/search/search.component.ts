@@ -13,11 +13,11 @@ import { SearchService } from './search.service';
 export class SearchComponent {
 
   searchForm: FormGroup;
-  bookPayload:BookPayload={
-    bookDtoList:[]
+  bookPayload: BookPayload = {
+    bookDtoList: []
   }
 
-  constructor(private _searchService: SearchService, private router:Router) {
+  constructor(private _searchService: SearchService, private router: Router) {
     this.findAllBooks();
     this.searchForm = new FormGroup({
       price: new FormControl([Validators.min(0), isNaN])
@@ -41,24 +41,24 @@ export class SearchComponent {
     }
   }
 
-  subscribe(bookDto:BookDto){
+  subscribe(bookDto: BookDto) {
     console.log(bookDto);
-    localStorage.setItem("subscribe",JSON.stringify(bookDto));
+    localStorage.setItem("subscribe", JSON.stringify(bookDto));
     this.router.navigate(["/reader/subscribe"]);
   }
 
   findAllBooks() {
     this._searchService.findAllBooks().subscribe({
       next: (res: any) => {
-        this.bookPayload = res;
-        console.log(this.bookPayload);
+        if (!!res.statusCode) {
+          alert(res.message)
+        } else {
+          this.bookPayload = res;
+          console.log(this.bookPayload);
+        }
       },
       error: (err: any) => {
         console.log(err)
-        this.bookPayload.bookDtoList=[
-          {bookId:1,logo:'booklogo.png',title:'The Best Book',category:'Education',price:100,authorId:1,author:'Author1',publisher:'Penguin', publishedDate:'02/02/2021',active:true},
-          {bookId:2,logo:'worstbooklogo.png',title:'The Worst Book',category:'Education',price:150,authorId:2,author:'Author2',publisher:'Dolphin', publishedDate:'02/03/2021',active:true}
-        ]
       }
     })
   }

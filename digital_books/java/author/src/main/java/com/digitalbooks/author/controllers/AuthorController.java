@@ -19,15 +19,16 @@ public class AuthorController {
 	@Autowired
 	private AuthorIf authorIf;
 
-	@PostMapping("{authorId}/books")
-	public AuthorPayload createBook(@RequestBody AuthorPayload authorPayload) throws DigitalBooksException {
+	@PostMapping("books")
+	public AuthorPayload createBook(@RequestBody AuthorPayload authorPayload)
+			throws DigitalBooksException {
 		return authorIf.createBook(authorPayload);
 	}
 
-	@PutMapping("{authorId}/books/{bookId}")
-	public AuthorPayload editBook(@RequestBody AuthorPayload authorPayload, @PathVariable Long authorId,
-			@PathVariable Long bookId) throws DigitalBooksException {
-		return authorIf.editBook(authorPayload, authorId, bookId);
+	@PutMapping("books/{bookId}")
+	public AuthorPayload editBook(@RequestBody AuthorPayload authorPayload, @PathVariable Long bookId)
+			throws DigitalBooksException {
+		return authorIf.editBook(authorPayload, bookId);
 	}
 
 }

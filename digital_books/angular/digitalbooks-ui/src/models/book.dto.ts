@@ -1,13 +1,13 @@
 export interface BookDto{
-    bookId:number,
+    bookId?:number,
     logo:string,
     title:string,
     category:string,
     price:number,
-    authorId:number,
+    authorId?:number,
     author:string,
     publisher:string,
-    publishedDate:string,
+    publishedDate?:string,
     active:boolean,
     content?:string
 }

@@ -38,9 +38,9 @@ export class FindComponent {
       publisher: "",
       title: ""
     },
-    readerDto:{
-      name:"",
-      emailId:""
+    readerDto: {
+      name: "",
+      emailId: ""
     },
     paymentDateTime: ''
   }
@@ -55,32 +55,22 @@ export class FindComponent {
   findInvoice(paymentId: string, emailId: string) {
     this._findService.findBookByPaymentId(emailId, Number(paymentId)).subscribe({
       next: (res: any) => {
-        this.paymentInvoicePayload = res;
-        console.log(this.paymentInvoicePayload);
-        this.paymentInvoiceHtml.heading="Payment Invoice"
-        this.paymentInvoiceHtml.title="Title Purchased : "+this.paymentInvoicePayload.bookDto.title
-        this.paymentInvoiceHtml.bookId="Book ID : "+this.paymentInvoicePayload.bookDto.bookId
-        this.paymentInvoiceHtml.paymentId="Payment ID : "+this.paymentInvoicePayload.paymentId
-        this.paymentInvoiceHtml.paymentDate="Payment Done On : "+this.paymentInvoicePayload.paymentDateTime
-        this.paymentInvoiceHtml.readerName="Name of Reader : "+this.paymentInvoicePayload.readerDto.name
-        this.paymentInvoiceHtml.readerEmail="Reader Email ID : "+this.paymentInvoicePayload.readerDto.emailId
+        if (!!res.statusCode) {
+          alert(res.message)
+        } else {
+          this.paymentInvoicePayload = res;
+          console.log(this.paymentInvoicePayload);
+          this.paymentInvoiceHtml.heading = "Payment Invoice"
+          this.paymentInvoiceHtml.title = "Title Purchased : " + this.paymentInvoicePayload.bookDto.title
+          this.paymentInvoiceHtml.bookId = "Book ID : " + this.paymentInvoicePayload.bookDto.bookId
+          this.paymentInvoiceHtml.paymentId = "Payment ID : " + this.paymentInvoicePayload.paymentId
+          this.paymentInvoiceHtml.paymentDate = "Payment Done On : " + this.paymentInvoicePayload.paymentDateTime
+          this.paymentInvoiceHtml.readerName = "Name of Reader : " + this.paymentInvoicePayload.readerDto.name
+          this.paymentInvoiceHtml.readerEmail = "Reader Email ID : " + this.paymentInvoicePayload.readerDto.emailId
+        }
       },
       error: (err: any) => {
         console.log(err)
-        this.paymentInvoicePayload.readerDto = {
-          readerId: 1,
-          name: 'reader',
-          emailId: 'reader@gmail'
-        }
-        this.paymentInvoicePayload.bookDto= 
-          { bookId: 1, logo: 'booklogo.png', title: 'The Best Book', category: 'Education', price: 100, authorId: 1, author: 'Author1', publisher: 'Penguin', publishedDate: '02/02/2021', active: true },
-        this.paymentInvoiceHtml.heading="Payment Invoice"
-        this.paymentInvoiceHtml.title="Title Purchased : "+this.paymentInvoicePayload.bookDto.title
-        this.paymentInvoiceHtml.bookId="Book ID : "+this.paymentInvoicePayload.bookDto.bookId
-        this.paymentInvoiceHtml.paymentId="Payment ID : "+this.paymentInvoicePayload.paymentId
-        this.paymentInvoiceHtml.paymentDate="Payment Done On : "+this.paymentInvoicePayload.paymentDateTime
-        this.paymentInvoiceHtml.readerName="Name of Reader : "+this.paymentInvoicePayload.readerDto.name
-        this.paymentInvoiceHtml.readerEmail="Reader Email ID : "+this.paymentInvoicePayload.readerDto.emailId
       }
     })
   }

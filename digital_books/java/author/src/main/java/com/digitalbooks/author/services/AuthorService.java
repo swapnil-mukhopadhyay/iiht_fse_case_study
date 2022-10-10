@@ -124,14 +124,14 @@ public class AuthorService implements AuthorIf {
 	}
 
 	@Override
-	public AuthorPayload editBook(AuthorPayload authorPayload, Long authorId, Long bookId)
+	public AuthorPayload editBook(AuthorPayload authorPayload, Long bookId)
 			throws DigitalBooksException {
 		if (IS_VALID_AUTHOR_PAYLOAD.test(authorPayload)) {
-			Optional<TblAuthorInfo> tblAuthorInfoOptional = tblAuthorInfoRepository.findById(authorId);
+			Optional<TblAuthorInfo> tblAuthorInfoOptional = tblAuthorInfoRepository.findByName(authorPayload.getName());
 			if (tblAuthorInfoOptional.isPresent()) {
 				Optional<TblAuthorBook> tblAuthorBookOptional = tblAuthorBookRepository.findByBookId(bookId);
 				try {
-					editBookIfValid(authorPayload, authorId, tblAuthorBookOptional);
+					editBookIfValid(authorPayload, tblAuthorBookOptional);
 				} catch (DigitalBooksException digitalBooksException) {
 					rethrowDigitalBooksException(digitalBooksException);
 				}
@@ -144,11 +144,11 @@ public class AuthorService implements AuthorIf {
 		return authorPayload;
 	}
 
-	private void editBookIfValid(AuthorPayload authorPayload, Long authorId,
+	private void editBookIfValid(AuthorPayload authorPayload,
 			Optional<TblAuthorBook> tblAuthorBookOptional) throws DigitalBooksException {
 		if (tblAuthorBookOptional.isPresent()) {
 			TblAuthorBook tblAuthorBook = tblAuthorBookOptional.get();
-			if (authorId.equals(tblAuthorBook.getParentTblAuthorInfo().getAuthorId())) {
+			if (authorPayload.getName().equals(tblAuthorBook.getParentTblAuthorInfo().getName())) {
 				BookPayload bookPayload = new BookPayload();
 				bookPayload.setBookDtoList(authorPayload.getBookDtoList());
 				try {

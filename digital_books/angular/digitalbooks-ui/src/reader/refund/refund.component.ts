@@ -13,48 +13,46 @@ import { RefundService } from './refund.service';
 export class RefundComponent implements OnInit {
 
   readerPayload: ReaderPayload = {
-    readerDto:{
-      readerId:0,
-      name:'',
-      emailId:''
+    readerDto: {
+      readerId: 0,
+      name: '',
+      emailId: ''
     },
-    notifications:[],
+    notifications: [],
     bookDtoList: []
   }
 
-  refundMessage:string=''
+  refundMessage: string = ''
 
-  constructor(private _refundService:RefundService, private router:Router) { }
+  constructor(private _refundService: RefundService, private router: Router) { }
 
-  refundBook(url:string, bookPurchasePayload:BookPurchasePayload){
-    this._refundService.refundBook(url,bookPurchasePayload).subscribe({
+  refundBook(url: string, bookPurchasePayload: BookPurchasePayload) {
+    this._refundService.refundBook(url, bookPurchasePayload).subscribe({
       next: (res: any) => {
-        this.readerPayload = res;
-        var bookTitle=this.readerPayload.bookDtoList[0].title
-        this.refundMessage='Successfully refunded book : '+bookTitle
-        console.log(this.readerPayload);
+        if (!!res.statusCode) {
+          alert(res.message)
+        } else {
+          this.readerPayload = res;
+          var bookTitle = this.readerPayload.bookDtoList[0].title
+          this.refundMessage = 'Successfully refunded book : ' + bookTitle
+          console.log(this.readerPayload);
+        }
       },
       error: (err: any) => {
         console.log(err)
-        this.readerPayload.bookDtoList = [
-          { bookId: 1, logo: 'booklogo.png', title: 'The Best Book', category: 'Education', price: 100, authorId: 1, author: 'Author1', publisher: 'Penguin', publishedDate: '02/02/2021', active: true },
-          { bookId: 2, logo: 'worstbooklogo.png', title: 'The Worst Book', category: 'Education', price: 150, authorId: 2, author: 'Author2', publisher: 'Dolphin', publishedDate: '02/03/2021', active: true }
-        ]
-        var bookTitle=this.readerPayload.bookDtoList[0].title
-        this.refundMessage='Successfully refunded book : '+bookTitle
       }
     })
   }
 
   ngOnInit(): void {
-    var refundUrl=localStorage.getItem('refund');
-    var refundPayloadInString=localStorage.getItem('refundPayload')
-    if(refundUrl && refundPayloadInString){
-      var bookPurchasePayload:BookPurchasePayload=  JSON.parse(refundPayloadInString);
-      this.refundBook(refundUrl,bookPurchasePayload);
+    var refundUrl = localStorage.getItem('refund');
+    var refundPayloadInString = localStorage.getItem('refundPayload')
+    if (refundUrl && refundPayloadInString) {
+      var bookPurchasePayload: BookPurchasePayload = JSON.parse(refundPayloadInString);
+      this.refundBook(refundUrl, bookPurchasePayload);
       localStorage.removeItem('refund')
       localStorage.removeItem('refundPayload')
-    }else{
+    } else {
       this.router.navigate(["/reader/subscriptions"]);
     }
   }

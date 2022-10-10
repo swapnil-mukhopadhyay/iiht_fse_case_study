@@ -12,8 +12,8 @@ import { SignupService } from './signup.service';
 })
 export class SignupComponent implements OnInit {
 
-  credentialsForm:FormGroup
-  constructor(private _signupService:SignupService,private router:Router) { 
+  credentialsForm: FormGroup
+  constructor(private _signupService: SignupService, private router: Router) {
     this.credentialsForm = new FormGroup({
       username: new FormControl("", [Validators.required]),
       password: new FormControl("", [Validators.required])
@@ -24,18 +24,22 @@ export class SignupComponent implements OnInit {
     localStorage.clear();
   }
 
-  signup(username:string,password:string){
-    var credentialPayload:CredentialPayload={
-      username:username,
-      password:password
+  signup(username: string, password: string) {
+    var credentialPayload: CredentialPayload = {
+      username: username,
+      password: password
     }
     this._signupService.signup(credentialPayload).subscribe({
       next: (res: any) => {
-       var jwt:JwtResponse=res
-       localStorage.setItem('authorToken',jwt.token)
-       localStorage.setItem('loggedInAuthor',credentialPayload.username)
-       console.log('JWT from Server : ',jwt)
-       this.router.navigate(["home"])
+        if (!!res.statusCode) {
+          alert(res.message)
+        } else {
+          var jwt: JwtResponse = res
+          localStorage.setItem('authorToken', jwt.token)
+          localStorage.setItem('loggedInAuthor', credentialPayload.username)
+          console.log('JWT from Server : ', jwt)
+          this.router.navigate(["home"])
+        }
       },
       error: (err: any) => {
         console.log(err)
