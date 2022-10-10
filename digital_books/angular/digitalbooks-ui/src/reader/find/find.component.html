@@ -1,13 +1,13 @@
-<h3>Purchase Book</h3>
+<h3>Find Your Payment Invoice</h3>
 
-<form [formGroup]="purchaseForm">
+<form [formGroup]="invoiceForm">
 
 
-    Enter your Name: <input 
-                     #name
-                     formControlName="name"
-                     type="text"
-                     placeholder="Enter Name" />
+    Enter Payment ID: <input 
+                     #paymentId
+                     formControlName="paymentId"
+                     type="number"
+                     placeholder="Enter Payment ID" />
                      <br/>
     
     Enter your Email ID: <input 
@@ -19,9 +19,9 @@
     
     <input 
         type="button"
-        value="Purchase"
-        (click)="buyBook(name.value,emailId.value)"
-        [disabled]="purchaseForm.invalid" />
+        value="Search Invoice"
+        (click)="findInvoice(paymentId.value,emailId.value)"
+        [disabled]="invoiceForm.invalid" />
     
 </form>
 

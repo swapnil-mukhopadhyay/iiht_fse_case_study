@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BookDto } from 'src/models/book.dto';
 import { BookPayload } from 'src/models/book.payload';
 import { SearchService } from './search.service';
@@ -16,7 +17,7 @@ export class SearchComponent {
     bookDtoList:[]
   }
 
-  constructor(private _searchService: SearchService) {
+  constructor(private _searchService: SearchService, private router:Router) {
     this.findAllBooks();
     this.searchForm = new FormGroup({
       price: new FormControl([Validators.min(0), isNaN])
@@ -42,6 +43,8 @@ export class SearchComponent {
 
   subscribe(bookDto:BookDto){
     console.log(bookDto);
+    localStorage.setItem("subscribe",JSON.stringify(bookDto));
+    this.router.navigate(["/reader/subscribe"]);
   }
 
   findAllBooks() {

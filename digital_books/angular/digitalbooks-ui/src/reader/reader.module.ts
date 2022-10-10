@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReadComponent } from './read/read.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { FindComponent } from './find/find.component';
 
 const routes:Routes = [
   { path: "search", component: SearchComponent },
@@ -17,6 +19,8 @@ const routes:Routes = [
   { path: "notifications", component: NotificationsComponent },
   { path: "refund", component: RefundComponent},
   { path: "read", component: ReadComponent},
+  { path: "find", component: FindComponent},
+  { path: "invoice", component: InvoiceComponent},
 ];
 
 @NgModule({
@@ -26,7 +30,9 @@ const routes:Routes = [
     SubscribeComponent,
     SubscriptionsComponent,
     NotificationsComponent,
-    ReadComponent
+    ReadComponent,
+    InvoiceComponent,
+    FindComponent
   ],
   imports: [
     CommonModule,

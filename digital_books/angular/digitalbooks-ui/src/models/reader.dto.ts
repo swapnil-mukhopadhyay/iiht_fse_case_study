@@ -1,5 +1,5 @@
 export interface ReaderDto{
-    readerId:number,
+    readerId?:number,
     name:string,
     emailId:string
 }
