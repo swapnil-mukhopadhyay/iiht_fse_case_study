@@ -1,17 +1,19 @@
 <div>
-    <h1 *ngIf="!authorLoggedIn">Digital Books - Reader</h1>
-    <h1 *ngIf="authorLoggedIn">Digital Books - Author</h1>
+    <h1 *ngIf="!isAuthorLoggedIn()">Digital Books - Reader</h1>
+    <h1 *ngIf="isAuthorLoggedIn()">Digital Books - Author</h1>
 
     <a routerLink="/home">| Home |</a>
 
-    <a *ngIf="!authorLoggedIn" routerLink="/reader/search">| Search & Subscribe |</a>
-    <a *ngIf="!authorLoggedIn" routerLink="/reader/subscriptions">| Your Subscriptions |</a>
-    <a *ngIf="!authorLoggedIn" routerLink="/reader/find">| Invoice Search |</a> 
-    <a *ngIf="!authorLoggedIn" routerLink="/reader/notifications">| Get Notifications |</a>
-    <a *ngIf="!authorLoggedIn" routerLink="/reader/notifications">| Author Login |</a>
+    <a *ngIf="!isAuthorLoggedIn()" routerLink="/reader/search">| Search & Subscribe |</a>
+    <a *ngIf="!isAuthorLoggedIn()" routerLink="/reader/subscriptions">| Your Subscriptions |</a>
+    <a *ngIf="!isAuthorLoggedIn()" routerLink="/reader/find">| Invoice Search |</a> 
+    <a *ngIf="!isAuthorLoggedIn()" routerLink="/reader/notifications">| Get Notifications |</a>
+    
+    <a *ngIf="!isAuthorLoggedIn()" routerLink="/author/login">| Author Login |</a>
+    <a *ngIf="!isAuthorLoggedIn()" routerLink="/author/signup">| Author Signup |</a>
 
-    <a *ngIf="authorLoggedIn" routerLink="/author/books">| My Books |</a>
-    <a *ngIf="authorLoggedIn" routerLink="/author/create">| Create New Book |</a>
-    <a *ngIf="authorLoggedIn" routerLink="/author/logout">| Log Out |</a>
+    <a *ngIf="isAuthorLoggedIn()" routerLink="/author/books">| My Books |</a>
+    <a *ngIf="isAuthorLoggedIn()" routerLink="/author/create">| Create New Book |</a>
+    <a *ngIf="isAuthorLoggedIn()" routerLink="/author/logout">| Log Out |</a>
 
 </div>

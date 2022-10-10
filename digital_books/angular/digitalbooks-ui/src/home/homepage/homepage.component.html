@@ -5,6 +5,7 @@
     providing knowledge of the outside world, improving their reading, writing and speaking skills <br/>
     as well as boosting memory and intelligence.</p>
 
-<h4>Share your knowledge, views, ideas and dreams with the world. Create an Author account today !</h4>
-<h3>OR</h3>
-<h4>Browse and Subscribe to our exquisite collection of books and Go on a reading spree !</h4>
+<h3 *ngIf="isAuthorLoggedIn()">Hi {{getUsername()}} !</h3>
+<h4 *ngIf="isAuthorLoggedIn()">Share your knowledge, views, ideas and dreams with the world. Create a New Book Now !</h4>
+<h3 *ngIf="!isAuthorLoggedIn()">You are a Reader</h3>
+<h4 *ngIf="!isAuthorLoggedIn()">Browse and Subscribe to our exquisite collection of books and Go on a reading spree !</h4>

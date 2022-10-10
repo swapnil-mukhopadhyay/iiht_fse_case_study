@@ -80,7 +80,7 @@ public class AuthorService implements AuthorIf {
 	public AuthorPayload createBook(AuthorPayload authorPayload) throws DigitalBooksException {
 		if (IS_VALID_AUTHOR_PAYLOAD.test(authorPayload)) {
 			Optional<TblAuthorInfo> tblAuthorInfoOptional = tblAuthorInfoRepository
-					.findById(authorPayload.getAuthorId());
+					.findByName(authorPayload.getName());
 			if (tblAuthorInfoOptional.isPresent()) {
 				try {
 					createNewBook(authorPayload, tblAuthorInfoOptional.get());
@@ -99,6 +99,8 @@ public class AuthorService implements AuthorIf {
 	private void createNewBook(AuthorPayload authorPayload, TblAuthorInfo tblAuthorInfo) throws DigitalBooksException {
 		BookPayload bookPayload = new BookPayload();
 		bookPayload.setBookDtoList(authorPayload.getBookDtoList());
+		bookPayload.getBookDtoList().get(0).setAuthorId(tblAuthorInfo.getAuthorId());
+		bookPayload.getBookDtoList().get(0).setAuthor(tblAuthorInfo.getName());
 		try {
 			bookPayload = bookClient.createBook(bookPayload);
 		} catch (FeignException feignException) {

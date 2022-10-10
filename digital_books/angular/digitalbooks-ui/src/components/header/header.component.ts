@@ -16,8 +16,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  authorLoggedIn:boolean=this.isAuthorLoggedIn()
-
   constructor() { }
 
   ngOnInit(): void {

@@ -49,7 +49,7 @@ public abstract class AuthorPredicates {
 			.test(bookPayload) && IS_VALID_BOOKDTO_WITH_CONTENT.test(bookPayload.getBookDtoList().get(0));
 
 	public static final Predicate<AuthorPayload> IS_VALID_AUTHOR_PAYLOAD = authorPayload -> IS_NOT_NULL
-			.test(authorPayload.getAuthorId()) && 1 == authorPayload.getBookDtoList().size()
+			.test(authorPayload.getName()) && 1 == authorPayload.getBookDtoList().size()
 			&& IS_VALID_BOOKDTO_WITH_CONTENT.test(authorPayload.getBookDtoList().get(0));
 
 	private AuthorPredicates() {

@@ -1,7 +1,7 @@
 import { BookDto } from './book.dto';
 
 export interface AuthorPayload{
-    authorId:number,
+    authorId?:number,
     name:string,
     bookDtoList:Array<BookDto>
 }

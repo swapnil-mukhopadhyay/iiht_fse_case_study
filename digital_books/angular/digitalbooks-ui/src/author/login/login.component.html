@@ -1,1 +1,26 @@
-<p>login works!</p>
+<h3>Author Log In</h3>
+
+<form [formGroup]="credentialsForm">
+
+
+    Username : <input 
+                #username
+                formControlName="username"
+                type="text"
+                placeholder="Enter Username" />
+                <br/>
+    
+    Password : <input 
+                #password
+                formControlName="password"
+                type="password"
+                placeholder="Enter Password" />
+                <br/>
+    
+    <input 
+        type="button"
+        value="Sign Up"
+        (click)="login(username.value,password.value)"
+        [disabled]="credentialsForm.invalid" />
+    
+</form>

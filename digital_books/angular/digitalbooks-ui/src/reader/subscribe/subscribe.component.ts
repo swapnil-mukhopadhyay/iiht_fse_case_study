@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BookDto } from 'src/models/book.dto';
-import { BookPayload } from 'src/models/book.payload';
 import { BookPurchasePayload } from 'src/models/book.purchase.payload';
 import { PaymentInvoicePayload } from 'src/models/payment.invoice.payload';
 import { SubscribeService } from './subscribe.service';

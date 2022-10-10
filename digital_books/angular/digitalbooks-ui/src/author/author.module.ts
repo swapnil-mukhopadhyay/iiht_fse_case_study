@@ -9,14 +9,6 @@ import { BooksComponent } from './books/books.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { FindComponent } from 'src/reader/find/find.component';
-import { InvoiceComponent } from 'src/reader/invoice/invoice.component';
-import { NotificationsComponent } from 'src/reader/notifications/notifications.component';
-import { ReadComponent } from 'src/reader/read/read.component';
-import { RefundComponent } from 'src/reader/refund/refund.component';
-import { SearchComponent } from 'src/reader/search/search.component';
-import { SubscribeComponent } from 'src/reader/subscribe/subscribe.component';
-import { SubscriptionsComponent } from 'src/reader/subscriptions/subscriptions.component';
 import { BlockComponent } from './block/block.component';
 
 const routes:Routes = [
