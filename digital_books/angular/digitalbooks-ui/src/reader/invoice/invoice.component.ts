@@ -19,6 +19,9 @@ export class InvoiceComponent implements OnInit {
   }
 
   constructor(private router:Router) { 
+    if(!this.isReader()){
+      this.router.navigate(["home"])
+    }
     var invoice=localStorage.getItem('invoice')
     if(invoice){
       this.paymentInvoiceHtml=JSON.parse(invoice)
@@ -26,6 +29,15 @@ export class InvoiceComponent implements OnInit {
       this.router.navigate(['reader/find'])
     }
     localStorage.removeItem('invoice')
+  }
+
+  isReader(){
+    var author = localStorage.getItem('authorToken')
+    if (author) {
+      return false
+    } else {
+      return true
+    }
   }
 
   ngOnInit(): void {

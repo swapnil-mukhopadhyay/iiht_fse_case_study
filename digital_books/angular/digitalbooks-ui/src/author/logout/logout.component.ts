@@ -8,7 +8,20 @@ import { Router } from '@angular/router';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router) {
+    if(!this.isAuthor()){
+      this.router.navigate(["author/login"])
+    }
+   }
+
+  isAuthor(){
+    var author = localStorage.getItem('authorToken')
+    if (author) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   ngOnInit(): void {
   }

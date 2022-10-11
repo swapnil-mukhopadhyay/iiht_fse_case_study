@@ -47,11 +47,25 @@ export class FindComponent {
   }
 
   constructor(private _findService: FindService, private router: Router) {
+
+    if(!this.isReader()){
+      this.router.navigate(["home"])
+    }
     this.invoiceForm = new FormGroup({
       paymentId: new FormControl([Validators.min(0), isNaN]),
       emailId: new FormControl("", [Validators.required, Validators.email])
     })
   }
+
+  isReader(){
+    var author = localStorage.getItem('authorToken')
+    if (author) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   viewInvoice(paymentInvoiceHtml:any){
     localStorage.setItem('invoice',JSON.stringify(paymentInvoiceHtml))
     this.router.navigate(['reader/invoice'])

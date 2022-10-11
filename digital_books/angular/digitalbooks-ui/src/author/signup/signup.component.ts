@@ -14,10 +14,22 @@ export class SignupComponent implements OnInit {
 
   credentialsForm: FormGroup
   constructor(private _signupService: SignupService, private router: Router) {
+
+    if(!this.isReader()){
+      this.router.navigate(["home"])
+    }
     this.credentialsForm = new FormGroup({
       username: new FormControl("", [Validators.required]),
       password: new FormControl("", [Validators.required])
     })
+  }
+  isReader(){
+    var author = localStorage.getItem('authorToken')
+    if (author) {
+      return false
+    } else {
+      return true
+    }
   }
 
   ngOnInit(): void {

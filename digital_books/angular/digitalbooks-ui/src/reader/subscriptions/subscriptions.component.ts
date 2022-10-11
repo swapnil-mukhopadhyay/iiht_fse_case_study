@@ -27,9 +27,21 @@ export class SubscriptionsComponent {
   }
 
   constructor(private _subscriptionService: SubscriptionsService, private router: Router) {
+    if(!this.isReader()){
+      this.router.navigate(["home"])
+    }
     this.emailForm = new FormGroup({
       emailId: new FormControl("", [Validators.required, Validators.email])
     })
+  }
+
+  isReader(){
+    var author = localStorage.getItem('authorToken')
+    if (author) {
+      return false
+    } else {
+      return true
+    }
   }
 
   getSubscriptions(emailId: string) {

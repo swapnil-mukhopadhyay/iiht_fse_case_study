@@ -24,8 +24,20 @@ export class RefundComponent implements OnInit {
 
   refundMessage: string = ''
 
-  constructor(private _refundService: RefundService, private router: Router) { }
+  constructor(private _refundService: RefundService, private router: Router) { 
+    if(!this.isReader()){
+      this.router.navigate(["home"])
+    }
+  }
 
+  isReader(){
+    var author = localStorage.getItem('authorToken')
+    if (author) {
+      return false
+    } else {
+      return true
+    }
+  }
   refundBook(url: string, bookPurchasePayload: BookPurchasePayload) {
     this._refundService.refundBook(url, bookPurchasePayload).subscribe({
       next: (res: any) => {

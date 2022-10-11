@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ReaderPayload } from 'src/models/reader.payload';
 import { NotificationsService } from './notifications.service';
 
@@ -20,10 +21,22 @@ export class NotificationsComponent {
     notifications: [],
     bookDtoList: []
   }
-  constructor(private _notificationsService: NotificationsService) {
+  constructor(private _notificationsService: NotificationsService,private router:Router) {
+    if(!this.isReader()){
+      this.router.navigate(["home"])
+    }
     this.emailForm = new FormGroup({
       emailId: new FormControl("", [Validators.required, Validators.email])
     })
+  }
+
+  isReader(){
+    var author = localStorage.getItem('authorToken')
+    if (author) {
+      return false
+    } else {
+      return true
+    }
   }
 
   getNotifications(emailId: string) {

@@ -62,11 +62,24 @@ export class SubscribeComponent implements OnInit {
   invoiceGenerated:boolean=false
 
   constructor(private _subscribeService: SubscribeService, private router: Router) {
+    if(!this.isReader()){
+      this.router.navigate(["home"])
+    }
     this.purchaseForm = new FormGroup({
       name: new FormControl("", [Validators.required]),
       emailId: new FormControl("", [Validators.required, Validators.email])
     })
   }
+
+  isReader(){
+    var author = localStorage.getItem('authorToken')
+    if (author) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   ngOnInit(): void {
     var subscribePayloadInString = localStorage.getItem("subscribe");
     if (subscribePayloadInString) {

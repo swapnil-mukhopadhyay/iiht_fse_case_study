@@ -18,7 +18,19 @@ export class BooksComponent {
   }
 
   constructor(private _booksService: BooksService, private router: Router, private _editService: EditService) {
+    if(!this.isAuthor()){
+      this.router.navigate(["author/login"])
+    }
     this.findAllBooksForAuthor(getAuthor(), getAuthorToken())
+  }
+
+  isAuthor(){
+    var author = localStorage.getItem('authorToken')
+    if (author) {
+      return true
+    } else {
+      return false
+    }
   }
 
   editBook(bookDto: BookDto) {

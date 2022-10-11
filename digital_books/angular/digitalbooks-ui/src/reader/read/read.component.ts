@@ -34,7 +34,11 @@ export class ReadComponent implements OnInit {
     title: ""
   }
 
-  constructor(private _readService: ReadService, private router: Router) { }
+  constructor(private _readService: ReadService, private router: Router) { 
+    if(!this.isReader()){
+      this.router.navigate(["home"])
+    }
+  }
 
   readBook(url: string) {
     this._readService.readBook(url).subscribe({
@@ -51,6 +55,15 @@ export class ReadComponent implements OnInit {
         console.log(err)
       }
     })
+  }
+
+  isReader(){
+    var author = localStorage.getItem('authorToken')
+    if (author) {
+      return false
+    } else {
+      return true
+    }
   }
 
   ngOnInit(): void {

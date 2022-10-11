@@ -16,6 +16,10 @@ export class CreateComponent implements OnInit {
   message: string = ''
 
   constructor(private _createService: CreateService, private router: Router) {
+
+    if(!this.isAuthor()){
+      this.router.navigate(["author/login"])
+    }
     this.bookForm = new FormGroup({
       logo: new FormControl("", [Validators.required]),
       title: new FormControl("", [Validators.required]),
@@ -32,7 +36,7 @@ export class CreateComponent implements OnInit {
 
   createBook(logo: string, title: string, category: string, price: string, publisher: string, active: string, content: string) {
 
-    if (getAuthor) {
+    if (this.isAuthor()) {
       var bookDto: BookDto = {
         logo: logo,
         title: title,
@@ -62,6 +66,15 @@ export class CreateComponent implements OnInit {
       })
     } else {
       this.router.navigate(["author/login"])
+    }
+  }
+
+  isAuthor(){
+    var author = localStorage.getItem('authorToken')
+    if (author) {
+      return true
+    } else {
+      return false
     }
   }
 

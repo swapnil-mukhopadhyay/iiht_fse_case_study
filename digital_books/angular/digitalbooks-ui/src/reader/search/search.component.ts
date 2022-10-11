@@ -18,10 +18,23 @@ export class SearchComponent {
   }
 
   constructor(private _searchService: SearchService, private router: Router) {
+
+    if(!this.isReader()){
+      this.router.navigate(["home"])
+    }
     this.findAllBooks();
     this.searchForm = new FormGroup({
       price: new FormControl([Validators.min(0), isNaN])
     })
+  }
+
+  isReader(){
+    var author = localStorage.getItem('authorToken')
+    if (author) {
+      return false
+    } else {
+      return true
+    }
   }
 
   findBooksByParams(category: string, author: string, price: string, publisher: string) {

@@ -28,6 +28,11 @@ export class EditComponent {
   }
 
   constructor(private _editService: EditService, private router: Router) {
+
+    if(!this.isAuthor()){
+      this.router.navigate(["author/login"])
+    }
+    
     var edit = localStorage.getItem('edit');
     if (edit) {
       this.bookDto = JSON.parse(edit);
@@ -76,6 +81,16 @@ export class EditComponent {
       })
     } else {
       this.router.navigate(["author/login"])
+    }
+  }
+
+  
+  isAuthor(){
+    var author = localStorage.getItem('authorToken')
+    if (author) {
+      return true
+    } else {
+      return false
     }
   }
 
