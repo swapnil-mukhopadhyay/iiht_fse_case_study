@@ -56,6 +56,7 @@ export class BooksComponent {
         },
         error: (err: any) => {
           console.log(err)
+          localStorage.clear();
           this.router.navigate(["author/login"])
         }
       })

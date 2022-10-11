@@ -61,6 +61,7 @@ export class CreateComponent implements OnInit {
         },
         error: (err: any) => {
           console.log(err)
+          localStorage.clear();
           this.router.navigate(["author/login"])
         }
       })
