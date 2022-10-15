@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "digitalbooks.book.host",
+    "type": "java.lang.String",
+    "description": "A description for 'digitalbooks.book.host'"
+  },
+  {
+    "name": "digitalbooks.book.port",
+    "type": "java.lang.String",
+    "description": "A description for 'digitalbooks.book.port'"
+  },
+  {
+    "name": "digitalbooks.book.url",
+    "type": "java.lang.String",
+    "description": "A description for 'digitalbooks.book.url'"
+  },
+  {
+    "name": "digitalbooks.kafka.host",
+    "type": "java.lang.String",
+    "description": "A description for 'digitalbooks.kafka.host'"
+  },
+  {
+    "name": "digitalbooks.kafka.port",
+    "type": "java.lang.String",
+    "description": "A description for 'digitalbooks.kafka.port'"
+  },
+  {
+    "name": "digitalbooks.kafka.socket",
+    "type": "java.lang.String",
+    "description": "A description for 'digitalbooks.kafka.socket'"
+  }
+]}
