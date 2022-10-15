@@ -6,7 +6,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:52925",
+            "url": "http://localhost:8080",
             "description": "Generated server url"
         }
     ],
@@ -147,6 +147,37 @@
                     },
                     "required": true
                 },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookPayload"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/digitalbooks/books/{authorId}/all": {
+            "get": {
+                "tags": [
+                    "book-controller"
+                ],
+                "operationId": "getAllBooksForAuthor",
+                "parameters": [
+                    {
+                        "name": "authorId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",

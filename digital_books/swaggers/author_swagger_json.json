@@ -6,27 +6,18 @@
     },
     "servers": [
         {
-            "url": "http://localhost:60660",
+            "url": "http://localhost:8081",
             "description": "Generated server url"
         }
     ],
     "paths": {
-        "/api/v1/digitalbooks/author/{authorId}/books/{bookId}": {
+        "/api/v1/digitalbooks/author/books/{bookId}": {
             "put": {
                 "tags": [
                     "author-controller"
                 ],
                 "operationId": "editBook",
                 "parameters": [
-                    {
-                        "name": "authorId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
                     {
                         "name": "bookId",
                         "in": "path",
@@ -37,36 +28,6 @@
                         }
                     }
                 ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/AuthorPayload"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "*/*": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/AuthorPayload"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/digitalbooks/author/{authorId}/books": {
-            "post": {
-                "tags": [
-                    "author-controller"
-                ],
-                "operationId": "createBook",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -144,6 +105,66 @@
                             "*/*": {
                                 "schema": {
                                     "$ref": "#/components/schemas/JwtResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/digitalbooks/author/books": {
+            "post": {
+                "tags": [
+                    "author-controller"
+                ],
+                "operationId": "createBook",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthorPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthorPayload"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/digitalbooks/author/{authorName}/all": {
+            "get": {
+                "tags": [
+                    "author-controller"
+                ],
+                "operationId": "editBook_1",
+                "parameters": [
+                    {
+                        "name": "authorName",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BookPayload"
                                 }
                             }
                         }
@@ -230,6 +251,17 @@
                 "properties": {
                     "token": {
                         "type": "string"
+                    }
+                }
+            },
+            "BookPayload": {
+                "type": "object",
+                "properties": {
+                    "bookDtoList": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BookDto"
+                        }
                     }
                 }
             }

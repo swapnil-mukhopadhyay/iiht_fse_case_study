@@ -43,7 +43,7 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.cors();
 		httpSecurity.csrf().disable().authorizeRequests()
-				.antMatchers("/api/v1/digitalbooks/author/signup", "/api/v1/digitalbooks/author/login").permitAll()
+				.antMatchers("/api/v1/digitalbooks/author/signup", "/api/v1/digitalbooks/author/login", "/v3/api-docs").permitAll()
 				.anyRequest().authenticated().and().exceptionHandling()
 				.authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

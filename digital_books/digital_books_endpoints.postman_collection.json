@@ -7,17 +7,77 @@
 	},
 	"item": [
 		{
+			"name": "Book : Generate Swagger Doc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v3/api-docs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v3",
+						"api-docs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Author : Generate Swagger Doc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/v3/api-docs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"v3",
+						"api-docs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reader : Generate Swagger Doc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/v3/api-docs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"v3",
+						"api-docs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Book : Search Book",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8888/api/v1/digitalbooks/books/search",
+					"raw": "http://localhost:8080/api/v1/digitalbooks/books/search",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -44,12 +104,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/api/v1/digitalbooks/readers/books/buy",
+					"raw": "http://localhost:8082/api/v1/digitalbooks/readers/books/buy",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8082",
 					"path": [
 						"api",
 						"v1",
@@ -77,12 +137,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/api/v1/digitalbooks/readers/tom@gmail.com/books/find",
+					"raw": "http://localhost:8082/api/v1/digitalbooks/readers/tom@gmail.com/books/find",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8082",
 					"path": [
 						"api",
 						"v1",
@@ -102,12 +162,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8888/api/v1/digitalbooks/readers/tom@gmail.com/books",
+					"raw": "http://localhost:8082/api/v1/digitalbooks/readers/tom@gmail.com/books",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8082",
 					"path": [
 						"api",
 						"v1",
@@ -138,12 +198,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/api/v1/digitalbooks/readers/tom@gmail.com/books/1",
+					"raw": "http://localhost:8082/api/v1/digitalbooks/readers/tom@gmail.com/books/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8082",
 					"path": [
 						"api",
 						"v1",
@@ -172,12 +232,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/api/v1/digitalbooks/readers/tom@gmail.com/books/1/refund",
+					"raw": "http://localhost:8082/api/v1/digitalbooks/readers/tom@gmail.com/books/1/refund",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8082",
 					"path": [
 						"api",
 						"v1",
@@ -198,12 +258,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8888/api/v1/digitalbooks/readers/tom@gmail.com/notification",
+					"raw": "http://localhost:8082/api/v1/digitalbooks/readers/tom@gmail.com/notification",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8082",
 					"path": [
 						"api",
 						"v1",
@@ -223,7 +283,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhdXRob3IxIiwiZXhwIjoxNjY0MzUyMTYzLCJpYXQiOjE2NjQzNTE1NjN9.5dOUGQ7t0IwK6j6qsKsRYVbUapCG0jYnwcDakXZ0Tu0uNoars4c8QvkL9oRIL0J4PF2QDNOggUU0DjZFn6tPog",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhdXRob3IxIiwiZXhwIjoxNjY1ODMxMDI0LCJpYXQiOjE2NjU4MzA0MjR9.lvvnx9oGVxzIP4sdJr6WGvMy8Gro3kRSyltDgpNuBy7hzro26jQ6G6OUCdLccnfXc_34Nc3aNwzpV5FryxXT9Q",
 						"type": "text"
 					}
 				],
@@ -237,18 +297,17 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/api/v1/digitalbooks/author/1/books",
+					"raw": "http://localhost:8081/api/v1/digitalbooks/author/books",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8081",
 					"path": [
 						"api",
 						"v1",
 						"digitalbooks",
 						"author",
-						"1",
 						"books"
 					]
 				}
@@ -262,7 +321,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhdXRob3IxIiwiZXhwIjoxNjY0MzUyODAyLCJpYXQiOjE2NjQzNTIyMDJ9.ZuhWDllSpfl3jHS5sLjukKqUSF_9niwwRP3BZXQR8qXVOYi7frOcY3cc5zzYOZczUDP0ECcoB6OkPjHixoCMYQ",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhdXRob3IxIiwiZXhwIjoxNjY1ODMxMDI0LCJpYXQiOjE2NjU4MzA0MjR9.lvvnx9oGVxzIP4sdJr6WGvMy8Gro3kRSyltDgpNuBy7hzro26jQ6G6OUCdLccnfXc_34Nc3aNwzpV5FryxXT9Q",
 						"type": "text"
 					}
 				],
@@ -276,18 +335,17 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/api/v1/digitalbooks/author/1/books/1",
+					"raw": "http://localhost:8081/api/v1/digitalbooks/author/books/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8081",
 					"path": [
 						"api",
 						"v1",
 						"digitalbooks",
 						"author",
-						"1",
 						"books",
 						"1"
 					]
@@ -310,12 +368,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/api/v1/digitalbooks/author/signup",
+					"raw": "http://localhost:8081/api/v1/digitalbooks/author/signup",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8081",
 					"path": [
 						"api",
 						"v1",
@@ -342,18 +400,48 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/api/v1/digitalbooks/author/login",
+					"raw": "http://localhost:8081/api/v1/digitalbooks/author/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8081",
 					"path": [
 						"api",
 						"v1",
 						"digitalbooks",
 						"author",
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Author : Get All Books",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhdXRob3IxIiwiZXhwIjoxNjY1ODI0MTg0LCJpYXQiOjE2NjU4MjM1ODR9.ihsXUww3trpK0xPtxQl8LMImRDBh_RJKCU8CefiQKRSKlGomb1ewjZ5AliZqKGe7WhAbca_0F5nwyqYMMsCImw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/digitalbooks/author/author1/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"digitalbooks",
+						"author",
+						"author1",
+						"all"
 					]
 				}
 			},

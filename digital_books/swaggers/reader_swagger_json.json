@@ -6,7 +6,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:52924",
+            "url": "http://localhost:8082",
             "description": "Generated server url"
         }
     ],
@@ -74,7 +74,7 @@
                         "content": {
                             "*/*": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ReaderPayload"
+                                    "$ref": "#/components/schemas/PaymentInvoicePayload"
                                 }
                             }
                         }
@@ -320,6 +320,9 @@
                     },
                     "bookDto": {
                         "$ref": "#/components/schemas/BookDto"
+                    },
+                    "readerDto": {
+                        "$ref": "#/components/schemas/ReaderDto"
                     }
                 }
             }
