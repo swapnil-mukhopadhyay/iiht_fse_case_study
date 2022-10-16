@@ -8,7 +8,7 @@ import { authorurl } from 'src/urls/author.url';
 })
 export class SignupService {
 
-  private author_url = "http://" + authorurl.host + ":" + authorurl.port + authorurl.prefix;
+  private author_url = authorurl.url;
   private signup_url: string = this.author_url+"/signup";
 
   constructor(private http:HttpClient) { }

@@ -7,7 +7,7 @@ import {bookurl} from 'src/urls/book.url';
 })
 export class SearchService {
 
-  private book_url = "http://" + bookurl.host + ":" + bookurl.port + bookurl.prefix;
+  private book_url = bookurl.url;
   private search_url_prefix: string = this.book_url+"/search";
 
   constructor(private http: HttpClient) { }

@@ -7,14 +7,14 @@ import { readerurl } from 'src/urls/reader.url';
 })
 export class FindService {
 
-  private reader_url = "http://" + readerurl.host + ":" + readerurl.port + readerurl.prefix;
-  private find_url: string = this.reader_url+"/";
+  private reader_url = readerurl.url;
+  private find_url: string = this.reader_url + "/";
 
   constructor(private http: HttpClient) { }
 
-  findBookByPaymentId(emailId:string,paymentId:number){
-    var url = this.find_url+emailId+"/books/find"
+  findBookByPaymentId(emailId: string, paymentId: number) {
+    var url = this.find_url + emailId + "/books/find"
     console.log("Constructed Find By Payment URL : " + url)
-    return this.http.post(url,paymentId);
+    return this.http.post(url, paymentId);
   }
 }

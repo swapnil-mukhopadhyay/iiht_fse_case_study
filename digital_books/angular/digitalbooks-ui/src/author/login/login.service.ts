@@ -8,7 +8,7 @@ import { authorurl } from 'src/urls/author.url';
 })
 export class LoginService {
 
-  private author_url = "http://" + authorurl.host + ":" + authorurl.port + authorurl.prefix
+  private author_url = authorurl.url;
   private login_url: string = this.author_url + "/login"
 
   login(credentialPayload: CredentialPayload) {

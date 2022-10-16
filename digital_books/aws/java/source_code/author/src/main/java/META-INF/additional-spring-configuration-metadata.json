@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "secret.key",
+    "type": "java.lang.String",
+    "description": "A description for 'secret.key'"
+  },
+  {
+    "name": "digitalbooks.book.host",
+    "type": "java.lang.String",
+    "description": "A description for 'digitalbooks.book.host'"
+  },
+  {
+    "name": "digitalbooks.book.port",
+    "type": "java.lang.String",
+    "description": "A description for 'digitalbooks.book.port'"
+  },
+  {
+    "name": "digitalbooks.book.url",
+    "type": "java.lang.String",
+    "description": "A description for 'digitalbooks.book.url'"
+  }
+]}

@@ -7,7 +7,7 @@ import { authorurl } from 'src/urls/author.url';
 })
 export class BooksService {
 
-  private author_url = "http://" + authorurl.host + ":" + authorurl.port + authorurl.prefix
+  private author_url = authorurl.url;
   private my_books_url = this.author_url + "/"
 
   constructor(private http: HttpClient) { }

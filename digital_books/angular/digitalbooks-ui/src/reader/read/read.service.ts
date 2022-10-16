@@ -7,14 +7,14 @@ import { readerurl } from 'src/urls/reader.url';
 })
 export class ReadService {
 
-  private reader_url = "http://" + readerurl.host + ":" + readerurl.port + readerurl.prefix;
-  private reader_url_prefix: string = this.reader_url+"/";
+  private reader_url = readerurl.url;
+  private reader_url_prefix: string = this.reader_url + "/";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  readBook(url:string){
-    console.log("constructed Read URL : " + this.reader_url_prefix+url)
-    return this.http.get(this.reader_url_prefix+url);
+  readBook(url: string) {
+    console.log("constructed Read URL : " + this.reader_url_prefix + url)
+    return this.http.get(this.reader_url_prefix + url);
   }
 
 }

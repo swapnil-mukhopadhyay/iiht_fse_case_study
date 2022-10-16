@@ -1,5 +1,3 @@
 export const readerurl = {
-    host: "localhost",
-    port: "8082",
-    prefix: "/api/v1/digitalbooks/readers"
+    url : "http://localhost:8082/api/v1/digitalbooks/readers"
 };

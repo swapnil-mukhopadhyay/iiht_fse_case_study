@@ -8,7 +8,7 @@ import { readerurl } from 'src/urls/reader.url';
 })
 export class SubscribeService {
 
-  private reader_url = "http://" + readerurl.host + ":" + readerurl.port + readerurl.prefix;
+  private reader_url = readerurl.url;
   private buy_books_url: string = this.reader_url + "/books/buy";
 
   constructor(private http: HttpClient) { }

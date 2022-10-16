@@ -1,5 +1,3 @@
 export const authorurl = {
-    host: "localhost",
-    port: "8081",
-    prefix: "/api/v1/digitalbooks/author"
+    url : "http://localhost:8081/api/v1/digitalbooks/author"
 };

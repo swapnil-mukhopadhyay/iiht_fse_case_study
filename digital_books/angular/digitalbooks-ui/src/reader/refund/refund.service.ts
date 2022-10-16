@@ -9,7 +9,7 @@ import { readerurl } from 'src/urls/reader.url';
 })
 export class RefundService {
 
-  private reader_url = "http://" + readerurl.host + ":" + readerurl.port + readerurl.prefix;
+  private reader_url = readerurl.url;
   private reader_url_prefix: string =this.reader_url+"/";
 
   constructor(private http:HttpClient) { }

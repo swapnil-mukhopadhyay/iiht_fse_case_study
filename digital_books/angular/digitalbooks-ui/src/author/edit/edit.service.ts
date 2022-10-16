@@ -8,7 +8,7 @@ import { authorurl } from 'src/urls/author.url';
 })
 export class EditService {
 
-  private author_url = "http://" + authorurl.host + ":" + authorurl.port + authorurl.prefix
+  private author_url = authorurl.url;
   private edit_url: string = this.author_url + "/books/";
   constructor(private http: HttpClient) { }
 
