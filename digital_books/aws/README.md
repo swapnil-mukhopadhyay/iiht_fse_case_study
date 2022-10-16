@@ -17,10 +17,8 @@ wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digita
 
 <h2>UI :</h2>
 
-<h3>Install Nginx</h3>
-sudo amazon-linux-extras install nginx1
-
 <h3>DigitalBooks-Ui</h3>
+
 wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/ui/digitalbooks-ui.zip
 
 unzip digitalbooks-ui.zip
@@ -32,3 +30,19 @@ sed -i 's/{AUTHOR_HOST}/<author_ip>/g' main.b1ac57201f097ba0.js
 sed -i 's/{READER_HOST}/<reader_ip>/g' main.b1ac57201f097ba0.js
 
 pwd
+
+<h3>Install Nginx</h3>
+
+sudo amazon-linux-extras install nginx1
+
+cd /usr/share/nginx/html
+
+rm -rf *.*
+
+rm -rf icons/
+
+cp <pwd of digitalbooks-ui>/*.* .
+  
+sudo service nginx start
+  
+sudo service nginx stop
