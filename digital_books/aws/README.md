@@ -24,7 +24,7 @@ sudo yum install nginx
 <h3>DigitalBooks-Ui</h3>
 wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/ui/digitalbooks-ui.zip
 
-
+</br>
 unzip digitalbooks-ui.zip
 
 sed -i 's/{BOOK_HOST}/<book_ip>/g' main.b1ac57201f097ba0.js
