@@ -1,5 +1,8 @@
-<h2>JAVA :</h2>
+<h2>KAFKA :</h2>
 
+https://downloads.apache.org/kafka/3.3.1/kafka_2.13-3.3.1.tgz
+
+<h2>JAVA :</h2>
 
 <h3>Book (8080) :</h3>
 https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/java/executable_jars/book-0.0.1.jar
