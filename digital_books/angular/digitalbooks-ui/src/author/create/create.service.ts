@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthorPayload } from 'src/models/author.payload';
+import { authorurl } from 'src/urls/author.url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreateService {
 
-  private create_url: string = "http://localhost:8888/api/v1/digitalbooks/author/books";
+  private author_url="http://"+authorurl.host+":"+authorurl.port+authorurl.prefix
+  private create_url:string=this.author_url+"/books"
   constructor(private http: HttpClient) { }
 
   createBook(authorPayload: AuthorPayload, authorToken: string) {
@@ -15,7 +17,6 @@ export class CreateService {
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*')
       .set('Authorization', 'Bearer ' + authorToken);
-    console.log("Created Create URL : ", this.create_url)
     return this.http.post(this.create_url, authorPayload, {'headers': headers});
   }
 }

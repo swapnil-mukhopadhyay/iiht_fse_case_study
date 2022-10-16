@@ -1,13 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthorPayload } from 'src/models/author.payload';
+import { authorurl } from 'src/urls/author.url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EditService {
 
-  private edit_url: string = "http://localhost:8888/api/v1/digitalbooks/author/books/";
+  private author_url = "http://" + authorurl.host + ":" + authorurl.port + authorurl.prefix
+  private edit_url: string = this.author_url + "/books/";
   constructor(private http: HttpClient) { }
 
   editBook(authorPayload: AuthorPayload, authorToken: string, bookId: number) {

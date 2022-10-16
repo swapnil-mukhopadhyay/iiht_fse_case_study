@@ -1,6 +1,7 @@
 package com.digitalbooks.author.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import com.digitalbooks.author.exceptions.DigitalBooksException;
 import com.digitalbooks.author.interfaces.AuthorIf;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/v1/digitalbooks/author")
 public class AuthorController {
 

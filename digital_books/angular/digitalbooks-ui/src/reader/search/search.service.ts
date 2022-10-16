@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {bookurl} from 'src/urls/book.url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
 
-  private search_url_prefix: string = "http://localhost:8888/api/v1/digitalbooks/books/search";
+  private book_url = "http://" + bookurl.host + ":" + bookurl.port + bookurl.prefix;
+  private search_url_prefix: string = this.book_url+"/search";
 
   constructor(private http: HttpClient) { }
 

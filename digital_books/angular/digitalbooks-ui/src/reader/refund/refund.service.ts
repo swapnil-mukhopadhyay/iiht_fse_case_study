@@ -2,13 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BookDto } from 'src/models/book.dto';
 import { BookPurchasePayload } from 'src/models/book.purchase.payload';
+import { readerurl } from 'src/urls/reader.url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RefundService {
 
-  private reader_url_prefix: string = "http://localhost:8888/api/v1/digitalbooks/readers/";
+  private reader_url = "http://" + readerurl.host + ":" + readerurl.port + readerurl.prefix;
+  private reader_url_prefix: string =this.reader_url+"/";
 
   constructor(private http:HttpClient) { }
 
