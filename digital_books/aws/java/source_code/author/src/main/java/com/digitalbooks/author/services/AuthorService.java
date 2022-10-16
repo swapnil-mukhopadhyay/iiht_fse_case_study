@@ -59,7 +59,7 @@ public class AuthorService implements AuthorIf {
 		Optional<TblAuthorCredential> tblAuthorCredentialOptional = tblAuthorCredentialRepository
 				.findByUsername(credentialPayload.getUsername());
 
-		if (tblAuthorCredentialOptional.isEmpty()) {
+		if (!tblAuthorCredentialOptional.isPresent()) {
 			TblAuthorCredential tblAuthorCredential = new TblAuthorCredential();
 			tblAuthorCredential.setUsername(credentialPayload.getUsername());
 			tblAuthorCredential
