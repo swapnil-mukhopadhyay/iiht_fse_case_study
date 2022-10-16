@@ -1,5 +1,4 @@
 <h2>KAFKA :</h2>
-
 ~wget https://downloads.apache.org/kafka/3.3.1/kafka_2.13-3.3.1.tgz
 
 <h2>JAVA :</h2>
@@ -23,16 +22,8 @@
 
 <h3>DigitalBooks-Ui</h3>
 ~wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/ui/digitalbooks-ui.zip
-
 ~unzip digitalbooks-ui.zip
-
 ~sed -i 's/{BOOK_HOST}/<book_ip>/g' main.b1ac57201f097ba0.js
-
 ~sed -i 's/{AUTHOR_HOST}/<author_ip>/g' main.b1ac57201f097ba0.js
-
 ~sed -i 's/{READER_HOST}/<reader_ip>/g' main.b1ac57201f097ba0.js
-
 ~pwd
-
-
-
