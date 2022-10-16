@@ -8,12 +8,19 @@ sudo yum install java-1.8.0-openjdk
 
 Book (8080) :
 wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/java/executable_jars/book-0.0.1.jar
+set KAFKA_HOST= localhost
+java -jar book-0.0.1.jar
 
 Author (8081) :
 wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/java/executable_jars/author-0.0.1.jar
+set BOOK_HOST= <ec2 ip of book>
+java -jar author-0.0.1.jar
 
 Reader (8082) :
 wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/java/executable_jars/reader-0.0.1.jar
+set BOOK_HOST= <ec2 ip of book>
+set KAFKA_HOST= <ec2 ip of kafka>
+java -jar reader-0.0.1.jar
 
 UI :
 
@@ -23,11 +30,11 @@ wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digita
 
 unzip digitalbooks-ui.zip
 
-sed -i 's/{BOOK_HOST}/<book_ip>/g' main.b1ac57201f097ba0.js
+sed -i 's/{BOOK_HOST}/<ec2 ip of book>/g' main.b1ac57201f097ba0.js
 
-sed -i 's/{AUTHOR_HOST}/<author_ip>/g' main.b1ac57201f097ba0.js
+sed -i 's/{AUTHOR_HOST}/<ec2 ip of author>/g' main.b1ac57201f097ba0.js
 
-sed -i 's/{READER_HOST}/<reader_ip>/g' main.b1ac57201f097ba0.js
+sed -i 's/{READER_HOST}/<ec2 ip of reader>/g' main.b1ac57201f097ba0.js
 
 pwd
 
