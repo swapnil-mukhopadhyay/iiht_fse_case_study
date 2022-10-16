@@ -16,9 +16,9 @@ https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_boo
 
 <h3>After downloading and unzipping : </h3>
 
-sed -i 's/{BOOK_HOST}/<book ip>:8080/g' main.b1ac57201f097ba0.jar
+sed -i 's/{BOOK_HOST}/<book_ip>/g' main.b1ac57201f097ba0.jar
 
-sed -i 's/{AUTHOR_HOST}/<author ip>:8081/g' main.b1ac57201f097ba0.jar
+sed -i 's/{AUTHOR_HOST}/<author_ip>/g' main.b1ac57201f097ba0.jar
 
-sed -i 's/{READER_HOST}/<reader ip>:8082/g' main.b1ac57201f097ba0.jar
+sed -i 's/{READER_HOST}/<reader_ip>/g' main.b1ac57201f097ba0.jar
 
