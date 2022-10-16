@@ -51,5 +51,7 @@ rm -rf icons/
 cp <pwd of digitalbooks-ui>/*.* .
   
 sudo service nginx start
+
+sudo service nginx status
   
 sudo service nginx stop
