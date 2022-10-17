@@ -54,6 +54,7 @@ export BOOK_HOST=
 java -jar author-0.0.1.jar
 -------------------------------------------------------------------------------------------------------------------------------------------
 
+Configure Api Gateway
 
 ===========================================================================================================================================
 3.
@@ -69,9 +70,10 @@ sudo su
 rm -rf *.*
 rm -rf icons/
 cp /home/ec2-user/digitalbooks-ui/*.* .
-sed -i 's/{AUTHOR_HOST}/author-ip/g' main.b1ac57201f097ba0.js
-sed -i 's/{READER_HOST}/reader-ip/g' main.b1ac57201f097ba0.js
-sed -i 's/{BOOK_HOST}/book-ip/g' main.b1ac57201f097ba0.js
+sed -i 's/{PROTOCOL}/https/g' main.b1ac57201f097ba0.js
+sed -i 's/{AUTHOR_SOCKET}/apigateway/g' main.b1ac57201f097ba0.js
+sed -i 's/{READER_SOCKET}/apigateway/g' main.b1ac57201f097ba0.js
+sed -i 's/{BOOK_SOCKET}/apigateway/g' main.b1ac57201f097ba0.js
 sudo service nginx start
 sudo service nginx status
 sudo service nginx stop

@@ -1,0 +1,300 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "DbGateway",
+    "version" : "2022-10-17 15:09:10UTC"
+  },
+  "servers" : [ {
+    "url" : "https://9zqygppava.execute-api.us-east-1.amazonaws.com/{basePath}",
+    "variables" : {
+      "basePath" : {
+        "default" : ""
+      }
+    }
+  } ],
+  "paths" : {
+    "/api/v1/digitalbooks/author/{aname}/all" : {
+      "get" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for GET /api/v1/digitalbooks/author/{aname}/all"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "1.0",
+          "type" : "http_proxy",
+          "httpMethod" : "GET",
+          "uri" : "http://18.205.236.127:8081/api/v1/digitalbooks/author/{aname}/all",
+          "connectionType" : "INTERNET"
+        }
+      },
+      "parameters" : [ {
+        "name" : "aname",
+        "in" : "path",
+        "description" : "Generated path parameter for aname",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/api/v1/digitalbooks/books/search" : {
+      "get" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for GET /api/v1/digitalbooks/books/search"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "1.0",
+          "type" : "http_proxy",
+          "httpMethod" : "GET",
+          "uri" : "http://3.235.51.134:8080/api/v1/digitalbooks/books/search",
+          "connectionType" : "INTERNET"
+        }
+      }
+    },
+    "/api/v1/digitalbooks/readers/{email}/books" : {
+      "get" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for GET /api/v1/digitalbooks/readers/{email}/books"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "1.0",
+          "type" : "http_proxy",
+          "httpMethod" : "GET",
+          "uri" : "http://3.235.51.134:8082/api/v1/digitalbooks/readers/{email}/books",
+          "connectionType" : "INTERNET"
+        }
+      },
+      "parameters" : [ {
+        "name" : "email",
+        "in" : "path",
+        "description" : "Generated path parameter for email",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/api/v1/digitalbooks/readers/{email}/books/{bid}" : {
+      "get" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for GET /api/v1/digitalbooks/readers/{email}/books/{bid}"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "1.0",
+          "type" : "http_proxy",
+          "httpMethod" : "GET",
+          "uri" : "http://3.235.51.134:8082/api/v1/digitalbooks/readers/{email}/books/{bid}",
+          "connectionType" : "INTERNET"
+        }
+      },
+      "parameters" : [ {
+        "name" : "email",
+        "in" : "path",
+        "description" : "Generated path parameter for email",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "bid",
+        "in" : "path",
+        "description" : "Generated path parameter for bid",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/api/v1/digitalbooks/readers/{email}/notification" : {
+      "get" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for GET /api/v1/digitalbooks/readers/{email}/notification"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "1.0",
+          "type" : "http_proxy",
+          "httpMethod" : "GET",
+          "uri" : "http://3.235.51.134:8082/api/v1/digitalbooks/readers/{email}/notification",
+          "connectionType" : "INTERNET"
+        }
+      },
+      "parameters" : [ {
+        "name" : "email",
+        "in" : "path",
+        "description" : "Generated path parameter for email",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/api/v1/digitalbooks/author/books" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /api/v1/digitalbooks/author/books"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "1.0",
+          "type" : "http_proxy",
+          "httpMethod" : "POST",
+          "uri" : "http://18.205.236.127:8081/api/v1/digitalbooks/author/books",
+          "connectionType" : "INTERNET"
+        }
+      }
+    },
+    "/api/v1/digitalbooks/author/login" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /api/v1/digitalbooks/author/login"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "1.0",
+          "type" : "http_proxy",
+          "httpMethod" : "POST",
+          "uri" : "http://18.205.236.127:8081/api/v1/digitalbooks/author/login",
+          "connectionType" : "INTERNET"
+        }
+      }
+    },
+    "/api/v1/digitalbooks/author/signup" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /api/v1/digitalbooks/author/signup"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "1.0",
+          "type" : "http_proxy",
+          "httpMethod" : "POST",
+          "uri" : "http://18.205.236.127:8081/api/v1/digitalbooks/author/signup",
+          "connectionType" : "INTERNET"
+        }
+      }
+    },
+    "/api/v1/digitalbooks/readers/books/buy" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /api/v1/digitalbooks/readers/books/buy"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "1.0",
+          "type" : "http_proxy",
+          "httpMethod" : "POST",
+          "uri" : "http://3.235.51.134:8082/api/v1/digitalbooks/readers/books/buy",
+          "connectionType" : "INTERNET"
+        }
+      }
+    },
+    "/api/v1/digitalbooks/readers/{email}/books/find" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /api/v1/digitalbooks/readers/{email}/books/find"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "1.0",
+          "type" : "http_proxy",
+          "httpMethod" : "POST",
+          "uri" : "http://3.235.51.134:8082/api/v1/digitalbooks/readers/{email}/books/find",
+          "connectionType" : "INTERNET"
+        }
+      },
+      "parameters" : [ {
+        "name" : "email",
+        "in" : "path",
+        "description" : "Generated path parameter for email",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/api/v1/digitalbooks/readers/{email}/books/{bid}/refund" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /api/v1/digitalbooks/readers/{email}/books/{bid}/refund"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "1.0",
+          "type" : "http_proxy",
+          "httpMethod" : "POST",
+          "uri" : "http://3.235.51.134:8082/api/v1/digitalbooks/readers/{email}/books/{bid}/refund",
+          "connectionType" : "INTERNET"
+        }
+      },
+      "parameters" : [ {
+        "name" : "email",
+        "in" : "path",
+        "description" : "Generated path parameter for email",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "bid",
+        "in" : "path",
+        "description" : "Generated path parameter for bid",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/api/v1/digitalbooks/author/books/{bid}" : {
+      "put" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for PUT /api/v1/digitalbooks/author/books/{bid}"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "1.0",
+          "type" : "http_proxy",
+          "httpMethod" : "PUT",
+          "uri" : "http://18.205.236.127:8081/api/v1/digitalbooks/author/books/{bid}",
+          "connectionType" : "INTERNET"
+        }
+      },
+      "parameters" : [ {
+        "name" : "bid",
+        "in" : "path",
+        "description" : "Generated path parameter for bid",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    }
+  },
+  "components" : {
+    "x-amazon-apigateway-integrations" : {
+      "unusedIntegration_wx8kcxc" : {
+        "payloadFormatVersion" : "1.0",
+        "type" : "http_proxy",
+        "httpMethod" : "GET",
+        "uri" : "http://34.203.75.6:8080/api/v1/digitalbooks/books/search",
+        "connectionType" : "INTERNET"
+      }
+    }
+  },
+  "x-amazon-apigateway-importexport-version" : "1.0"
+}
