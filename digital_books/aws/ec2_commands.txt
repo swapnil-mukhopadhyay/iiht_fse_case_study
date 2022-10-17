@@ -1,57 +1,66 @@
-=====================================================================================================================================
-
-ec2dbbk t2.small:
-
-inbound rules :
-SSH MyIP 22
-CustomTCP MyIP 8080
-CustomTCP Author/Reader IP 8080
-
-chmod 400 ec2dbbk.pem
-ssh -i "ec2dbbk.pem" ec2-user@ec2-44-210-144-60.compute-1.amazonaws.com
+===========================================================================================================================================
+1.
+ec2brk (Book, Reader, Kafka) t2.small :
+allowed :
+ssh:me:22
+ctcp:me:8080  ctcp:ui:8080  ctcp:author:8080
+ctcp:me:8082  ctcp:ui:8082
+-------------------------------------------------------------------------------------------------------------------------------------------
+T1 :
 
 sudo yum install java-1.8.0-openjdk
 wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/java/executable_jars/book-0.0.1.jar
-wget https://downloads.apache.org/kafka/3.3.1/kafka_2.13-3.3.1.tgz
-tar zxvf kafka_2.13-3.3.1.tgz
-cd kafka_2.13-3.3.1/bin
+wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/java/executable_jars/reader-0.0.1.jar
+wget https://archive.apache.org/dist/kafka/3.2.0/kafka_2.13-3.2.0.tgz
+tar zxvf kafka_2.13-3.2.0.tgz
+sudo su
+rm -rf kafka_2.13-3.2.0.tgz
+cd kafka_2.13-3.2.0/bin
 ./zookeeper-server-start.sh ./../config/zookeeper.properties
-./kafka-server-start.sh ./../config/server.properties 
+-------------------------------------------------------------------------------------------------------------------------------------------
+T2 :
+
+cd kafka_2.13-3.2.0/bin
+./kafka-server-start.sh ./../config/server.properties
+-------------------------------------------------------------------------------------------------------------------------------------------
+T3 :
+
+cd kafka_2.13-3.2.0/bin
 ./kafka-topics.sh --create --topic digital_books_notification --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1
+cd ..
+cd ..
 export KAFKA_HOST=localhost
 java -jar book-0.0.1.jar
+-------------------------------------------------------------------------------------------------------------------------------------------
+T4 :
+
+export KAFKA_HOST=localhost
+export BOOK_HOST=localhost
+java -jar reader-0.0.1.jar
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 
-====================================================================================================================================
-
-ec2dbar t2. micro:
-
-inbound rules :
-SSH MyIP 22
-CustomTCP MyIP 8081
-CustomTCP MyIP 8082
-
-chmod 400 ec2dbar.pem
-ssh -i "ec2dbar.pem" ec2-user@ec2-54-209-25-31.compute-1.amazonaws.com
+===========================================================================================================================================
+2.
+ec2aut (Author) t2.micro :
+allowed :
+ssh:me:22
+ctcp:me:8081 ctcp:ui:8081
+-------------------------------------------------------------------------------------------------------------------------------------------
+T5 :
 
 sudo yum install java-1.8.0-openjdk
 wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/java/executable_jars/author-0.0.1.jar
-wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/java/executable_jars/reader-0.0.1.jar
-export BOOK_HOST=44.199.203.115 
-export KAFKA_HOST=44.199.203.115
+export BOOK_HOST=
 java -jar author-0.0.1.jar
-java -jar reader-0.0.1.jar
+-------------------------------------------------------------------------------------------------------------------------------------------
 
-======================================================================================================================================
 
-ec2dbui t2.micro:
-
-inbound rules :
-SSH MyIP 22
-HTTP MyIP 80
-
-chmod 400 ec2dbui.pem
-ssh -i "ec2dbui.pem" ec2-user@ec2-54-210-15-227.compute-1.amazonaws.com
+===========================================================================================================================================
+3.
+ec2dbui (DigitalBooksUi) t2.micro :
+-------------------------------------------------------------------------------------------------------------------------------------------
+T6 :
 
 sudo amazon-linux-extras install nginx1
 wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/ui/digitalbooks-ui.zip
@@ -61,16 +70,12 @@ sudo su
 rm -rf *.*
 rm -rf icons/
 cp /home/ec2-user/digitalbooks-ui/*.* .
-sed -i 's/{AUTHOR_HOST}/54.209.25.31/g' main.b1ac57201f097ba0.js
-sed -i 's/{READER_HOST}/54.209.25.31/g' main.b1ac57201f097ba0.js
-sed -i 's/{BOOK_HOST}/44.210.144.60/g' main.b1ac57201f097ba0.js
+sed -i 's/{AUTHOR_HOST}/author-ip/g' main.b1ac57201f097ba0.js
+sed -i 's/{READER_HOST}/reader-ip/g' main.b1ac57201f097ba0.js
+sed -i 's/{BOOK_HOST}/book-ip/g' main.b1ac57201f097ba0.js
 sudo service nginx start
 sudo service nginx status
 sudo service nginx stop
-
-=========================================================================================================================================
-
-apigateway:
-
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 
