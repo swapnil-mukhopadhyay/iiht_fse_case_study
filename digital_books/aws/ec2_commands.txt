@@ -65,15 +65,16 @@ T6 :
 sudo amazon-linux-extras install nginx1
 wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/ui/digitalbooks-ui.zip
 unzip digitalbooks-ui.zip
-cd /usr/share/nginx/html
 sudo su
+rm -rf digitalbooks-ui.zip
+cd /usr/share/nginx/html
 rm -rf *.*
 rm -rf icons/
 cp /home/ec2-user/digitalbooks-ui/*.* .
-sed -i 's/{PROTOCOL}/https/g' main.b1ac57201f097ba0.js
-sed -i 's/{AUTHOR_SOCKET}/apigateway/g' main.b1ac57201f097ba0.js
-sed -i 's/{READER_SOCKET}/apigateway/g' main.b1ac57201f097ba0.js
-sed -i 's/{BOOK_SOCKET}/apigateway/g' main.b1ac57201f097ba0.js
+sed -i 's/{PROTOCOL}/https/g' main.80b39d8ecb937069.js
+sed -i 's/{AUTHOR_SOCKET}/apigateway/g' main.80b39d8ecb937069.js
+sed -i 's/{READER_SOCKET}/apigateway/g' main.80b39d8ecb937069.js
+sed -i 's/{BOOK_SOCKET}/apigateway/g' main.80b39d8ecb937069.js
 sudo service nginx start
 sudo service nginx status
 sudo service nginx stop

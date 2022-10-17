@@ -2,7 +2,7 @@
   "openapi" : "3.0.1",
   "info" : {
     "title" : "DbGateway",
-    "version" : "2022-10-17 15:09:10UTC"
+    "version" : "2022-10-17 16:23:24UTC"
   },
   "servers" : [ {
     "url" : "https://9zqygppava.execute-api.us-east-1.amazonaws.com/{basePath}",
@@ -295,6 +295,13 @@
         "connectionType" : "INTERNET"
       }
     }
+  },
+  "x-amazon-apigateway-cors" : {
+    "allowMethods" : [ "GET", "POST", "PUT" ],
+    "allowHeaders" : [ "*" ],
+    "maxAge" : 0,
+    "allowCredentials" : false,
+    "allowOrigins" : [ "*" ]
   },
   "x-amazon-apigateway-importexport-version" : "1.0"
 }
