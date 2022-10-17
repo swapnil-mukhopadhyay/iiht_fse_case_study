@@ -7,7 +7,7 @@ ctcp:me:8080  ctcp:ui:8080  ctcp:author:8080
 ctcp:me:8082  ctcp:ui:8082
 -------------------------------------------------------------------------------------------------------------------------------------------
 T1 :
-
+<connect to ec2brk>
 sudo yum install java-1.8.0-openjdk
 wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/java/executable_jars/book-0.0.1.jar
 wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/java/executable_jars/reader-0.0.1.jar
@@ -19,12 +19,12 @@ cd kafka_2.13-3.2.0/bin
 ./zookeeper-server-start.sh ./../config/zookeeper.properties
 -------------------------------------------------------------------------------------------------------------------------------------------
 T2 :
-
+<connect to ec2brk>
 cd kafka_2.13-3.2.0/bin
 ./kafka-server-start.sh ./../config/server.properties
 -------------------------------------------------------------------------------------------------------------------------------------------
 T3 :
-
+<connect to ec2brk>
 cd kafka_2.13-3.2.0/bin
 ./kafka-topics.sh --create --topic digital_books_notification --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1
 cd ..
@@ -33,7 +33,7 @@ export KAFKA_HOST=localhost
 java -jar book-0.0.1.jar
 -------------------------------------------------------------------------------------------------------------------------------------------
 T4 :
-
+<connect to ec2brk>
 export KAFKA_HOST=localhost
 export BOOK_HOST=localhost
 java -jar reader-0.0.1.jar
@@ -48,7 +48,7 @@ ssh:me:22
 ctcp:me:8081 ctcp:ui:8081
 -------------------------------------------------------------------------------------------------------------------------------------------
 T5 :
-
+<connect to ec2aut>
 sudo yum install java-1.8.0-openjdk
 wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/java/executable_jars/author-0.0.1.jar
 export BOOK_HOST=
@@ -61,7 +61,7 @@ java -jar author-0.0.1.jar
 ec2dbui (DigitalBooksUi) t2.micro :
 -------------------------------------------------------------------------------------------------------------------------------------------
 T6 :
-
+<connect to ec2dbui>
 sudo amazon-linux-extras install nginx1
 wget https://github.com/swapnil-mukhopadhyay/iiht_fse_case_study/raw/main/digital_books/aws/ui/digitalbooks-ui.zip
 unzip digitalbooks-ui.zip
@@ -77,5 +77,3 @@ sudo service nginx start
 sudo service nginx status
 sudo service nginx stop
 -------------------------------------------------------------------------------------------------------------------------------------------
-
-
