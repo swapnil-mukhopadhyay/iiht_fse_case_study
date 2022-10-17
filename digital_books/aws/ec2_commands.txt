@@ -27,8 +27,7 @@ T3 :
 <connect to ec2brk>
 cd kafka_2.13-3.2.0/bin
 ./kafka-topics.sh --create --topic digital_books_notification --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1
-cd ..
-cd ..
+cd ~
 export KAFKA_HOST=localhost
 java -jar book-0.0.1.jar
 -------------------------------------------------------------------------------------------------------------------------------------------
